@@ -1,0 +1,655 @@
+<script>
+  import { onMount } from 'svelte';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  let lang = $state('zh');
+  let menuOpen = $state(false);
+  let activeProject = $state(null);
+  let hoveredProject = $state(null);
+
+  const t = {
+    en: {
+      nav: ['About', 'Projects', 'Experience', 'Resume', 'Contact'],
+      navIds: ['about','projects','experience','resume','contact'],
+      heroGreeting: "Hello, I'm",
+      heroName: 'Shangyi Zhou',
+      heroSub: 'UI/UX Designer · Product Designer · Project Manager',
+      heroDesc: "M.S. Digital Media & XR @ UChicago · B.S. ICAM @ UCSD · Dean's Scholarship",
+      heroCta: 'View My Work',
+      aboutTitle: 'About Me',
+      aboutText: "I'm a designer and researcher bridging art, technology, and human experience. With a background spanning interdisciplinary computing, art history, and extended reality, I craft intuitive interfaces and meaningful interactions that put people first.",
+      aboutText2: "Currently pursuing my Master's at the University of Chicago with a 4.0 GPA, I bring hands-on experience in UI/UX design, HCI research, Arduino prototyping, and agile product development.",
+      skillsTitle: 'Skills',
+      projectsTitle: 'Projects',
+      expTitle: 'Experience',
+      resumeTitle: 'Resume',
+      resumeDesc: 'Download my full resume to learn more about my experience and skills.',
+      resumeBtn: 'Download Resume',
+      contactTitle: 'Get In Touch',
+      contactDesc: "I'm currently looking for UI/UX, Product Design, and Project Management internships. Let's connect!",
+      portfolioLink: 'View Portfolio on ZCOOL',
+      close: '✕ CLOSE',
+      campusTitle: 'Campus',
+      resumeBtnZh: 'Download CV (中文)',
+      resumeBtnEn: 'Download Resume (EN)',
+    },
+    zh: {
+      nav: ['关于我', '项目', '经历', '简历', '联系'],
+      navIds: ['about','projects','experience','resume','contact'],
+      heroGreeting: '你好，我是',
+      heroName: '周尚嶷',
+      heroSub: 'UI/UX 设计师 · 产品设计师 · 项目经理',
+      heroDesc: '芝加哥大学数字媒体与扩展现实硕士 · 院长奖学金',
+      heroCta: '查看作品',
+      aboutTitle: '关于我',
+      aboutText: '我是一名设计师与研究者，在艺术、科技与人类体验之间架桥铺路。我的背景横跨跨学科计算机、艺术史与扩展现实，致力于打造以人为本的直觉界面与有意义的交互体验。',
+      aboutText2: '目前就读于芝加哥大学，GPA 4.0，拥有 UI/UX 设计、HCI 研究、Arduino 原型开发及敏捷产品开发的实战经验，正在寻找产品/交互/UIUX 设计及项目管理方向的实习机会。',
+      skillsTitle: '技能',
+      projectsTitle: '项目展示',
+      expTitle: '实习经历',
+      resumeTitle: '简历',
+      resumeDesc: '下载我的完整简历，了解更多关于我的经历和技能。',
+      resumeBtn: '下载简历',
+      contactTitle: '联系我',
+      contactDesc: '我正在寻找 UI/UX、产品设计和项目管理方向的实习机会，欢迎联系！',
+      portfolioLink: '在站酷查看作品集',
+      close: '✕ 关闭',
+      campusTitle: '校园经历',
+      resumeBtnZh: '下载简历（中文版）',
+      resumeBtnEn: 'Download Resume (EN)',
+    }
+  };
+
+  const projects = [
+    {
+      id: 'footnow',
+      titleEn: 'FOOTNOW',
+      titleZh: 'FOOTNOW',
+      tagEn: 'APP Design · UX · Product Design',
+      tagZh: 'APP设计 · 用户体验 · 产品设计',
+      descEn: 'A smart soccer cleat app helping hobbyist players get game feedback, strengthen team bonds, and find nearby matches. Full UX research, personas, wireframes, and hi-fi prototypes.',
+      descZh: '一款配合智能足球鞋的App，帮助业余球员获取比赛数据反馈、加强团队凝聚力，并轻松发现附近球友。包含完整用研、用户画像、线框图与高保真原型。',
+      cover: '/images/footnow/5.jpg',
+      imagesEn: ['/images/footnow/1.jpg','/images/footnow/2.jpg','/images/footnow/3.jpg','/images/footnow/4.jpg','/images/footnow/5.jpg','/images/footnow/6.jpg'],
+      imagesZh: ['/images/footnow/C1.jpg','/images/footnow/C2.jpg','/images/footnow/C3.jpg','/images/footnow/C4.jpg','/images/footnow/C5.jpg','/images/footnow/C6.jpg'],
+      color: '#c8a45a',
+      bg: '#0e0b04',
+      tools: ['Figma', 'UX Research', 'Prototyping', 'Product Design'],
+    },
+    {
+      id: 'trackpack',
+      titleEn: 'TrackPack',
+      titleZh: 'TrackPack',
+      tagEn: 'Product Design · APP Design · UX',
+      tagZh: '产品设计 · APP设计 · 用户体验',
+      descEn: 'An AI-powered smart suitcase and companion app using cameras and weight sensors to track belongings in real time, notifying users of missing items before departure.',
+      descZh: '搭载AI摄像头与电子秤的智能行李箱及配套App，实时追踪物品进出与重量变化，在出发前提醒用户防止遗漏。',
+      cover: '/images/trackpack/11.jpg',
+      imagesEn: ['/images/trackpack/7.jpg','/images/trackpack/8.jpg','/images/trackpack/9.jpg','/images/trackpack/10.jpg','/images/trackpack/11.jpg','/images/trackpack/12.jpg'],
+      imagesZh: ['/images/trackpack/C7.jpg','/images/trackpack/C8.jpg','/images/trackpack/C9.jpg','/images/trackpack/C10.jpg','/images/trackpack/C11.jpg','/images/trackpack/C12.jpg'],
+      color: '#e87d9b',
+      bg: '#0e0408',
+      tools: ['Figma', 'Product Design', 'User Research', 'Prototyping'],
+    },
+    {
+      id: 'happyhour',
+      titleEn: 'HappyHour',
+      titleZh: 'HappyHour',
+      tagEn: 'VR Design · User Experience',
+      tagZh: 'VR设计 · 用户体验',
+      descEn: 'A VR app encouraging moderate drinking while delivering an authentic bar atmosphere and social interactions — with user journey maps, personas, wireframes, and hi-fi VR UI.',
+      descZh: '一款鼓励适度饮酒的虚拟现实App，提供真实感十足的酒吧体验与社交互动，含用户行为路径图、用户画像与高保真VR界面。',
+      cover: '/images/happyhour/17.jpg',
+      imagesEn: ['/images/happyhour/13.jpg','/images/happyhour/14.jpg','/images/happyhour/15.jpg','/images/happyhour/16.jpg','/images/happyhour/17.jpg'],
+      imagesZh: ['/images/happyhour/C13.jpg','/images/happyhour/C14.jpg','/images/happyhour/C15.jpg','/images/happyhour/C16.jpg','/images/happyhour/C17.jpg'],
+      color: '#e26f50',
+      bg: '#0e0604',
+      tools: ['VR Design', 'Figma', 'UX Research', 'User Journey Map'],
+    },
+    {
+      id: 'lanterns',
+      titleEn: 'Lanterns But Light & Reunion',
+      titleZh: '灯笼·归光 & 归聚',
+      tagEn: 'Interactive Art · Arduino · P5.JS',
+      tagZh: '互动艺术 · Arduino · P5.JS',
+      descEn: 'Two interactive artworks exploring cultural discontinuity — a physical Arduino light installation and a P5.js generative particle visualization.',
+      descZh: '两件探讨文化断裂性与延续性的互动艺术作品——Arduino实体灯光装置与P5.js粒子可视化生成艺术。',
+      cover: '/images/lanterns/22.jpg',
+      imagesEn: ['/images/lanterns/18.jpg','/images/lanterns/19.jpg','/images/lanterns/20.jpg','/images/lanterns/21.jpg','/images/lanterns/22.jpg','/images/lanterns/23.jpg'],
+      imagesZh: ['/images/lanterns/C18-1.jpg','/images/lanterns/C19-1.jpg','/images/lanterns/C20-1.jpg','/images/lanterns/C21-1.jpg','/images/lanterns/C22-1.jpg','/images/lanterns/C23-1.jpg'],
+      color: '#8fc44a',
+      bg: '#050a02',
+      tools: ['Arduino', 'P5.js', 'Interactive Art', 'Cultural Research'],
+    },
+  ];
+
+  const experiences = [
+    {
+      companyEn: 'Lifang International Digital Technology Co., Ltd.',
+      companyZh: '力方国际数字科技有限公司',
+      roleEn: 'UI Design Intern',
+      roleZh: 'UI 设计实习生',
+      period: '2025.07 – 2025.09',
+      locationEn: 'Chengdu',
+      locationZh: '成都',
+      bulletsEn: [
+        'Led UI/UX design for digital cultural interactive products; delivered 30+ lo-fi/hi-fi prototypes and components.',
+        'Built 20+ components and information architectures in Figma, improving design-dev collaboration efficiency by 30%.',
+        'Participated in agile sprints; collaborated with PM and 20+ developers to optimize UX and usability.',
+      ],
+      bulletsZh: [
+        '负责数字文化互动产品 UI/UX 设计，完成 30+ 低保真/高保真原型及组件设计。',
+        '使用 Figma 构建 20+ 组件与信息架构，提升设计开发协作效率 30%。',
+        '在敏捷开发模式下参与需求评审与版本迭代，协同 PM 及 20+ 开发成员优化用户体验。',
+      ],
+    },
+    {
+      companyEn: 'USC – Prof. Aisling Kelliher "Memory Research"',
+      companyZh: '南加州大学 Aisling Kelliher 教授 Memory Research 项目',
+      roleEn: 'Research Assistant',
+      roleZh: '项目研究员',
+      period: '2024.06 – 2024.07',
+      locationEn: 'Los Angeles',
+      locationZh: '洛杉矶',
+      bulletsEn: [
+        'Designed AI interaction systems and optimized UX around emotion recognition and memory management.',
+        'Analyzed 100+ cases and user behaviors; provided 10+ product optimization recommendations.',
+      ],
+      bulletsZh: [
+        '设计 AI 交互系统与优化用户体验，围绕情感识别、记忆管理构建人机交互框架。',
+        '基于 100+ 条案例与用户行为分析，提出 10+ 产品优化建议。',
+      ],
+    },
+    {
+      companyEn: 'Nanjing Museum – Exhibition Department',
+      companyZh: '南京博物院陈列部',
+      roleEn: 'Intern',
+      roleZh: '实习生',
+      period: '2023.08 – 2023.09',
+      locationEn: 'Nanjing',
+      locationZh: '南京',
+      bulletsEn: [
+        'Participated in 3 major exhibitions including the 90th Anniversary Show and William Morris Special Exhibition.',
+        'Organized 1,000+ archival materials; translated 20+ CN/EN documents; coordinated with designers and institutions.',
+      ],
+      bulletsZh: [
+        '参与 3 场大型展览项目：九十周年院展、威廉·莫里斯特展及江苏省十大精品展评审。',
+        '整理资料 1000+、人工翻译中英文文稿 20+，配合设计师与多方机构推进工作。',
+      ],
+    },
+  ];
+
+  const campus = [
+    {
+      companyEn: 'UCSD Envision Lab',
+      companyZh: '加州大学圣地亚哥分校 Envision Lab',
+      roleEn: 'Lab Assistant',
+      roleZh: '实验室助理',
+      period: '2024.01 – 2025.06',
+      locationEn: 'San Diego',
+      locationZh: '圣地亚哥',
+      bulletsEn: [
+        'Supported 300+ students in design and prototyping practice; guided problem decomposition and solution building around user needs.',
+        'Facilitated cross-disciplinary collaboration between engineering and visual design.',
+        'Provided hands-on guidance for 3D printing, laser cutting, soldering, and weaving equipment to support prototype iteration.',
+      ],
+      bulletsZh: [
+        '支持 300+ 学生开展设计与原型实践，围绕用户需求引导问题拆解与方案构建，促进工程与视觉设计跨学科协作。',
+        '提供 3D 打印、激光切割、焊接与编织等设备指导，支持原型迭代与交互实现，强化设计表达与落地能力。',
+      ],
+    },
+  ];
+
+  const skills = ['Figma', 'UI/UX Design', 'Interaction Design', 'Prototyping', 'Design Systems', 'User Research', 'HCI', 'XR/VR', 'HTML/CSS', 'JavaScript', 'Svelte', 'Python', 'Arduino', 'P5.js', 'Blender', 'Adobe PS', 'Illustrator', 'InDesign', 'Unreal Engine', 'Unity'];
+
+  onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.hero-greeting', { opacity: 0, y: 60, duration: 1, delay: 0.2, ease: 'power3.out' });
+    gsap.from('.hero-name', { opacity: 0, y: 80, duration: 1.2, delay: 0.5, ease: 'power3.out' });
+    gsap.from('.hero-sub', { opacity: 0, y: 40, duration: 1, delay: 0.9, ease: 'power3.out' });
+    gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 1.1, ease: 'power3.out' });
+    gsap.from('.hero-cta', { opacity: 0, y: 30, duration: 1, delay: 1.3, ease: 'power3.out' });
+    gsap.from('.hero-image', { opacity: 0, x: 80, duration: 1.4, delay: 0.4, ease: 'power3.out' });
+
+    gsap.utils.toArray('.fade-up').forEach(el => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        opacity: 0, y: 50, duration: 0.9, ease: 'power3.out'
+      });
+    });
+
+    gsap.utils.toArray('.skill-tag').forEach((el, i) => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 90%' },
+        opacity: 0, y: 20, duration: 0.5, delay: i * 0.04, ease: 'power2.out'
+      });
+    });
+
+    gsap.utils.toArray('.exp-item').forEach((el, i) => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        opacity: 0, x: -40, duration: 0.9, delay: i * 0.15, ease: 'power3.out'
+      });
+    });
+
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    if (cursor && cursorDot) {
+      document.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.4, ease: 'power2.out' });
+        gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
+      });
+    }
+  });
+
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    menuOpen = false;
+  }
+
+  function openProject(p) {
+    activeProject = p;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProject() {
+    activeProject = null;
+    document.body.style.overflow = '';
+  }
+
+  function toggleLang() {
+    lang = lang === 'en' ? 'zh' : 'en';
+  }
+
+  function currentImages(project) {
+    return lang === 'zh' ? project.imagesZh : project.imagesEn;
+  }
+</script>
+
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 nav-bar">
+  <button onclick={()=>scrollTo('hero')} class="sy-logo">SY</button>
+  <div class="hidden md:flex items-center gap-8">
+    {#each t[lang].nav as item, i}
+      <button onclick={()=>scrollTo(t[lang].navIds[i])} class="nav-link">{item}</button>
+    {/each}
+    <button onclick={toggleLang} class="lang-btn">{lang === 'en' ? '中文' : 'EN'}</button>
+  </div>
+  <button onclick={()=>menuOpen=!menuOpen} class="md:hidden flex flex-col gap-1.5 p-2">
+    <div class="w-6 h-px bg-white transition-all" style="transform:{menuOpen?'rotate(45deg) translateY(6px)':'none'}"></div>
+    <div class="w-6 h-px bg-white" style="opacity:{menuOpen?0:1}"></div>
+    <div class="w-6 h-px bg-white transition-all" style="transform:{menuOpen?'rotate(-45deg) translateY(-6px)':'none'}"></div>
+  </button>
+</nav>
+
+{#if menuOpen}
+  <div class="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-8">
+    {#each t[lang].nav as item, i}
+      <button onclick={()=>scrollTo(t[lang].navIds[i])} class="text-white text-4xl tracking-widest uppercase" style="font-family:'Bebas Neue',sans-serif">{item}</button>
+    {/each}
+    <button onclick={()=>{toggleLang();menuOpen=false;}} class="text-white/50 text-base mt-4" style="font-family:'Space Mono',monospace">{lang==='en'?'切换中文':'Switch to EN'}</button>
+  </div>
+{/if}
+
+<!-- HERO -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden" style="background:#0a0a0a">
+  <div class="noise-overlay"></div>
+  <div class="vert-line" style="right:33.333%"></div>
+  <div class="vert-line" style="left:33.333%"></div>
+
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-16 pt-32 pb-20 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="hero-greeting mono-sm mb-4" style="color:rgba(255,255,255,0.35)">{t[lang].heroGreeting}</p>
+      <h1 class="hero-name display-font text-7xl md:text-9xl leading-none mb-6" style="color:white">{t[lang].heroName}</h1>
+      <p class="hero-sub text-lg md:text-xl font-light mb-4 leading-relaxed" style="color:rgba(255,255,255,0.65)">{t[lang].heroSub}</p>
+      <p class="hero-desc mono-sm tracking-wide mb-10" style="color:rgba(255,255,255,0.3)">{t[lang].heroDesc}</p>
+      <button onclick={()=>scrollTo('projects')} class="hero-cta cta-btn">
+        {t[lang].heroCta} <span class="arrow">→</span>
+      </button>
+    </div>
+    <div class="hero-image relative flex justify-center">
+      <img src="/images/photos/photo1.jpeg" alt="Shangyi Zhou" class="hero-photo w-full max-w-xs object-cover" style="aspect-ratio:3/4" />
+      <div class="badge">
+        <p class="mono-sm" style="color:rgba(255,255,255,0.45)">UCSD · UChicago</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <p class="mono-sm" style="color:rgba(255,255,255,0.22)">SCROLL</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#111;padding:8rem 2rem">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+    <div class="relative" style="padding-bottom:2.5rem;padding-right:2.5rem">
+      <img src="/images/photos/photo2.jpeg" alt="Machu Picchu" class="fade-up w-full object-cover" style="aspect-ratio:1/1" />
+      <img src="/images/photos/photo3.jpeg" alt="Envision Lab" class="fade-up absolute object-cover" style="width:10rem;height:10rem;bottom:0;right:0;border:4px solid #111" />
+    </div>
+    <div>
+      <p class="fade-up mono-sm mb-4" style="color:rgba(255,255,255,0.28)">01 / {t[lang].aboutTitle}</p>
+      <h2 class="fade-up display-font text-5xl md:text-6xl mb-8" style="color:white">{t[lang].aboutTitle}</h2>
+      <p class="fade-up text-lg leading-relaxed mb-6" style="color:rgba(255,255,255,0.58)">{t[lang].aboutText}</p>
+      <p class="fade-up text-lg leading-relaxed mb-12" style="color:rgba(255,255,255,0.58)">{t[lang].aboutText2}</p>
+      <p class="fade-up mono-sm mb-6" style="color:rgba(255,255,255,0.28)">{t[lang].skillsTitle}</p>
+      <div class="flex flex-wrap gap-2">
+        {#each skills as skill}
+          <span class="skill-tag mono-sm px-3 py-1.5 border transition-all cursor-default" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.1)">{skill}</span>
+        {/each}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS — large hover rows -->
+<section id="projects" style="background:#0a0a0a;padding:8rem 2rem">
+  <div class="max-w-7xl mx-auto">
+    <p class="fade-up mono-sm mb-4" style="color:rgba(255,255,255,0.28)">02 / {t[lang].projectsTitle}</p>
+    <h2 class="fade-up display-font text-5xl md:text-6xl mb-16" style="color:white">{t[lang].projectsTitle}</h2>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.07)">
+      {#each projects as project, i}
+        <div
+          class="proj-row"
+          onmouseenter={() => hoveredProject = project.id}
+          onmouseleave={() => hoveredProject = null}
+          onclick={() => openProject(project)}
+          role="button"
+          tabindex="0"
+          onkeydown={(e) => e.key==='Enter' && openProject(project)}
+          style="
+            border-bottom:1px solid rgba(255,255,255,0.07);
+            cursor:pointer;
+            overflow:hidden;
+            transition: background 0.5s ease, padding 0.5s ease;
+            background:{hoveredProject===project.id ? project.color+'14' : 'transparent'};
+            padding:{hoveredProject===project.id ? '2.5rem 1rem' : '1.8rem 1rem'};
+          "
+        >
+          <!-- Top row: number + title + tag + arrow -->
+          <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
+            <span class="mono-sm" style="color:rgba(255,255,255,0.22);min-width:2rem">0{i+1}</span>
+            <h3 class="display-font" style="
+              font-size:clamp(2.2rem,4.5vw,4rem);
+              color:{hoveredProject===project.id ? project.color : 'white'};
+              transition:color 0.35s ease;
+              line-height:1;
+              flex-shrink:0;
+            ">{lang==='en' ? project.titleEn : project.titleZh}</h3>
+            <span class="mono-sm" style="color:rgba(255,255,255,0.32);flex:1">{lang==='en' ? project.tagEn : project.tagZh}</span>
+            <span style="
+              font-size:1.4rem;
+              color:{hoveredProject===project.id ? project.color : 'rgba(255,255,255,0.18)'};
+              transition:color 0.3s,transform 0.3s;
+              transform:{hoveredProject===project.id ? 'translate(3px,-3px)' : 'none'};
+              display:inline-block;
+            ">↗</span>
+          </div>
+
+          <!-- Expanded content on hover -->
+          <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:2rem;
+            margin-top:{hoveredProject===project.id ? '2rem' : '0'};
+            max-height:{hoveredProject===project.id ? '36rem' : '0'};
+            opacity:{hoveredProject===project.id ? 1 : 0};
+            overflow:hidden;
+            transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, margin-top 0.4s ease;
+          ">
+            <!-- Big image -->
+            <div style="overflow:hidden;border-radius:2px">
+              <img src={project.cover} alt={project.titleEn}
+                style="width:100%;height:100%;object-fit:cover;max-height:32rem;transition:transform 0.6s ease;transform:{hoveredProject===project.id?'scale(1.03)':'scale(1)'}" />
+            </div>
+            <!-- Info panel -->
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:1.5rem;padding:1rem 0">
+              <p style="font-size:0.95rem;line-height:1.75;color:rgba(255,255,255,0.58)">{lang==='en' ? project.descEn : project.descZh}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+                {#each project.tools as tool}
+                  <span class="mono-sm px-3 py-1" style="border:1px solid {project.color}55;color:{project.color}">{tool}</span>
+                {/each}
+              </div>
+              <p class="mono-sm" style="color:{project.color};letter-spacing:0.15em">
+                {lang==='en' ? '↗ CLICK TO VIEW FULL PROJECT' : '↗ 点击查看完整项目'}
+              </p>
+            </div>
+          </div>
+        </div>
+      {/each}
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:#111;padding:8rem 2rem">
+  <div class="max-w-7xl mx-auto">
+    <p class="fade-up mono-sm mb-4" style="color:rgba(255,255,255,0.28)">03 / {t[lang].expTitle}</p>
+    <h2 class="fade-up display-font text-5xl md:text-6xl mb-20" style="color:white">{t[lang].expTitle}</h2>
+    <div>
+      {#each experiences as exp}
+        <div class="exp-item" style="border-top:1px solid rgba(255,255,255,0.07);padding:3rem 0;display:grid;grid-template-columns:1fr 2fr;gap:3rem">
+          <div>
+            <p class="mono-sm mb-2" style="color:rgba(255,255,255,0.28)">{exp.period}</p>
+            <p class="mono-sm" style="color:rgba(255,255,255,0.22)">{lang==='en'?exp.locationEn:exp.locationZh}</p>
+          </div>
+          <div>
+            <h3 class="display-font text-2xl mb-1" style="color:white">{lang==='en'?exp.roleEn:exp.roleZh}</h3>
+            <p class="mono-sm mb-6" style="color:rgba(255,255,255,0.32)">{lang==='en'?exp.companyEn:exp.companyZh}</p>
+            <ul style="display:flex;flex-direction:column;gap:0.75rem">
+              {#each (lang==='en'?exp.bulletsEn:exp.bulletsZh) as bullet}
+                <li style="display:flex;gap:0.75rem;font-size:0.875rem;line-height:1.65;color:rgba(255,255,255,0.52)">
+                  <span style="color:rgba(255,255,255,0.18);flex-shrink:0;margin-top:0.1rem">—</span>{bullet}
+                </li>
+              {/each}
+            </ul>
+          </div>
+        </div>
+      {/each}
+      <div style="border-top:1px solid rgba(255,255,255,0.07)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPUS -->
+<section style="background:#0a0a0a;padding:0 2rem 8rem">
+  <div class="max-w-7xl mx-auto">
+    <p class="fade-up mono-sm mb-12" style="color:rgba(255,255,255,0.28)">{t[lang].campusTitle}</p>
+    <div>
+      {#each campus as exp}
+        <div class="exp-item" style="border-top:1px solid rgba(255,255,255,0.07);padding:3rem 0;display:grid;grid-template-columns:1fr 2fr;gap:3rem">
+          <div>
+            <p class="mono-sm mb-2" style="color:rgba(255,255,255,0.28)">{exp.period}</p>
+            <p class="mono-sm" style="color:rgba(255,255,255,0.22)">{lang==='en'?exp.locationEn:exp.locationZh}</p>
+          </div>
+          <div>
+            <h3 class="display-font text-2xl mb-1" style="color:white">{lang==='en'?exp.roleEn:exp.roleZh}</h3>
+            <p class="mono-sm mb-6" style="color:rgba(255,255,255,0.32)">{lang==='en'?exp.companyEn:exp.companyZh}</p>
+            <ul style="display:flex;flex-direction:column;gap:0.75rem">
+              {#each (lang==='en'?exp.bulletsEn:exp.bulletsZh) as bullet}
+                <li style="display:flex;gap:0.75rem;font-size:0.875rem;line-height:1.65;color:rgba(255,255,255,0.52)">
+                  <span style="color:rgba(255,255,255,0.18);flex-shrink:0;margin-top:0.1rem">—</span>{bullet}
+                </li>
+              {/each}
+            </ul>
+          </div>
+        </div>
+      {/each}
+      <div style="border-top:1px solid rgba(255,255,255,0.07)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" style="background:#111;padding:8rem 2rem">
+  <div class="max-w-7xl mx-auto text-center">
+    <p class="fade-up mono-sm mb-4" style="color:rgba(255,255,255,0.28)">04 / {t[lang].resumeTitle}</p>
+    <h2 class="fade-up display-font text-5xl md:text-6xl mb-8" style="color:white">{t[lang].resumeTitle}</h2>
+    <p class="fade-up text-lg mb-12 max-w-xl mx-auto" style="color:rgba(255,255,255,0.38)">{t[lang].resumeDesc}</p>
+    <div class="fade-up flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/resume-zh.pdf" download="周尚嶷简历-中文版2026.pdf"
+        class="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white/85 transition-all">
+        {t[lang].resumeBtnZh} ↓
+      </a>
+      <a href="/resume-en.pdf" download="Shangyi Zhou Resume 2026.pdf"
+        class="inline-flex items-center gap-3 border border-white/30 text-white px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all">
+        {t[lang].resumeBtnEn} ↓
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:#111;padding:8rem 2rem">
+  <div class="max-w-7xl mx-auto">
+    <p class="fade-up mono-sm mb-4" style="color:rgba(255,255,255,0.28)">05 / {t[lang].contactTitle}</p>
+    <h2 class="fade-up display-font text-5xl md:text-6xl mb-8" style="color:white">{t[lang].contactTitle}</h2>
+    <p class="fade-up text-lg mb-12 max-w-2xl" style="color:rgba(255,255,255,0.38)">{t[lang].contactDesc}</p>
+    <div class="fade-up flex flex-col sm:flex-row gap-6">
+      <a href="/cdn-cgi/l/email-protection#0a7962703a3f334a7f696263696b6d65246f6e7f" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
+        ✉ <span class="__cf_email__" data-cfemail="ef9c8795dfdad6af9a8c87868c8e8880c18a8b9a">[email&#160;protected]</span>
+      </a>
+      <a href="https://www.zcool.com.cn/work/ZNzMyNzAyMjA=.html" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
+        {t[lang].portfolioLink} ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.05);padding:2rem">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="mono-sm" style="color:rgba(255,255,255,0.18)">© 2025 Shangyi Zhou · 周尚嶷</p>
+    <p class="mono-sm" style="color:rgba(255,255,255,0.18)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8af9e2f0babfb3caffe9e2e3e9ebede5a4efeeff">[email&#160;protected]</a></p>
+  </div>
+</footer>
+
+<!-- PROJECT MODAL -->
+{#if activeProject}
+  <div class="modal-overlay" style="background:{activeProject.bg}">
+    <!-- Sticky top bar with title + lang toggle + close -->
+    <div class="modal-topbar">
+      <div style="display:flex;align-items:center;gap:1.5rem">
+        <p class="mono-sm" style="color:{activeProject.color};letter-spacing:0.2em;text-transform:uppercase">
+          {lang==='en' ? activeProject.tagEn : activeProject.tagZh}
+        </p>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem">
+        <button onclick={toggleLang} class="lang-btn-modal" style="border-color:{activeProject.color}50;color:{activeProject.color}">
+          {lang==='en' ? '中文' : 'EN'}
+        </button>
+        <button onclick={closeProject} class="lang-btn-modal" style="border-color:{activeProject.color}50;color:{activeProject.color}">
+          {t[lang].close}
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal content -->
+    <div style="max-width:72rem;margin:0 auto;padding:2rem 2rem 6rem">
+      <h2 class="display-font" style="font-size:clamp(3rem,7vw,5.5rem);color:white;line-height:1;margin-bottom:1.5rem">
+        {lang==='en' ? activeProject.titleEn : activeProject.titleZh}
+      </h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:42rem">
+        {lang==='en' ? activeProject.descEn : activeProject.descZh}
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:3rem">
+        {#each activeProject.tools as tool}
+          <span class="mono-sm px-4 py-1.5" style="border:1px solid {activeProject.color}50;color:{activeProject.color}">{tool}</span>
+        {/each}
+      </div>
+
+      <!-- Full-width images -->
+      <div style="display:flex;flex-direction:column;gap:0.5rem">
+        {#each currentImages(activeProject) as img}
+          <img src={img} alt="" style="width:100%;display:block;object-fit:contain" />
+        {/each}
+      </div>
+    </div>
+  </div>
+{/if}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap');
+
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) { background: #0a0a0a; overflow-x: hidden; }
+
+  .display-font { font-family: 'Bebas Neue', sans-serif; }
+  .mono-sm { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; }
+
+  .nav-bar {
+    background: linear-gradient(to bottom, rgba(10,10,10,0.92), transparent);
+    backdrop-filter: blur(8px);
+  }
+  .sy-logo { font-family:'Bebas Neue',sans-serif; font-size:1.25rem; color:white; letter-spacing:0.15em; }
+  .nav-link { font-family:'Space Mono',monospace; font-size:0.72rem; color:white; letter-spacing:0.18em; text-transform:uppercase; transition:opacity 0.2s; }
+  .nav-link:hover { opacity: 0.45; }
+  .lang-btn { font-family:'Space Mono',monospace; font-size:0.72rem; color:white; border:1px solid rgba(255,255,255,0.35); padding:0.25rem 0.85rem; border-radius:999px; transition:all 0.2s; }
+  .lang-btn:hover { background:white; color:black; }
+
+  .noise-overlay {
+    position:absolute; inset:0; opacity:0.038;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:200px;
+  }
+  .vert-line { position:absolute; top:0; width:1px; height:100%; background:rgba(255,255,255,0.04); }
+
+  .hero-photo { transition: filter 0.8s ease; }
+  .hero-photo:hover { filter: sepia(0.5) saturate(2.5) hue-rotate(280deg) brightness(1.1); }
+
+  .badge { position:absolute; bottom:1rem; right:1rem; padding:0.4rem 1rem; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.55); backdrop-filter:blur(6px); }
+
+  .cta-btn { display:inline-flex; align-items:center; gap:0.75rem; background:white; color:black; padding:1rem 2rem; font-size:0.78rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; transition:background 0.2s; }
+  .cta-btn:hover { background:rgba(255,255,255,0.88); }
+  .arrow { display:inline-block; transition:transform 0.3s; }
+  .cta-btn:hover .arrow { transform:translateX(6px); }
+
+  .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
+  .scroll-line { width:1px; height:4rem; background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.28)); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  .proj-row:focus { outline:none; }
+  .proj-row:focus-visible { outline:2px solid rgba(255,255,255,0.25); }
+
+  /* Modal */
+  .modal-overlay {
+    position:fixed; inset:0; z-index:100; overflow-y:auto;
+    animation: modalIn 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes modalIn {
+    from { opacity:0; transform:translateY(30px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .modal-topbar {
+    position:sticky; top:0; z-index:10;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.25rem 2rem;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+    max-width:100%;
+  }
+
+  .lang-btn-modal {
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.15em;
+    padding:0.35rem 0.9rem;
+    border:1px solid;
+    background:transparent;
+    cursor:pointer;
+    transition:opacity 0.2s;
+  }
+  .lang-btn-modal:hover { opacity:0.6; }
+
+  /* Cursor */
+  .cursor { position:fixed; width:36px; height:36px; border:1px solid rgba(255,255,255,0.4); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); display:none; transition:width 0.3s,height 0.3s; }
+  .cursor-dot { position:fixed; width:4px; height:4px; background:white; border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); display:none; }
+  @media (pointer:fine) { .cursor { display:block; } .cursor-dot { display:block; } }
+</style>
