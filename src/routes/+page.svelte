@@ -15,7 +15,7 @@
       heroGreeting: "Hello, I'm",
       heroName: 'Shangyi Zhou',
       heroSub: 'UI/UX Designer · Product Designer · Project Manager',
-      heroDesc: "M.S. Digital Media & XR @ UChicago · B.S. ICAM @ UCSD · Dean's Scholarship",
+      heroDesc: "M.S. Digital Media & XR @ UChicago (Dean's Scholarship) · B.S. ICAM @ UCSD",
       heroCta: 'View My Work',
       aboutTitle: 'About Me',
       aboutText: "I'm a designer and researcher bridging art, technology, and human experience. With a background spanning interdisciplinary computing, art history, and extended reality, I craft intuitive interfaces and meaningful interactions that put people first.",
@@ -314,7 +314,7 @@
     <div class="hero-image relative flex justify-center">
       <img src="/images/photos/photo1.jpeg" alt="Shangyi Zhou" class="hero-photo w-full max-w-xs object-cover" style="aspect-ratio:3/4" />
       <div class="badge">
-        <p class="mono-sm" style="color:rgba(255,255,255,0.45)">UCSD · UChicago</p>
+        <p class="mono-sm" style="color:rgba(255,255,255,0.45)">UChicago · UCSD</p>
       </div>
     </div>
   </div>
@@ -497,7 +497,7 @@
         class="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white/85 transition-all">
         {t[lang].resumeBtnZh} ↓
       </a>
-      <a href="/resume-en.pdf" download="Shangyi Zhou Resume 2026.pdf"
+      <a href="/resume-en.pdf" target="_blank"
         class="inline-flex items-center gap-3 border border-white/30 text-white px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all">
         {t[lang].resumeBtnEn} ↓
       </a>
@@ -512,8 +512,8 @@
     <h2 class="fade-up display-font text-5xl md:text-6xl mb-8" style="color:white">{t[lang].contactTitle}</h2>
     <p class="fade-up text-lg mb-12 max-w-2xl" style="color:rgba(255,255,255,0.38)">{t[lang].contactDesc}</p>
     <div class="fade-up flex flex-col sm:flex-row gap-6">
-      <a href="/cdn-cgi/l/email-protection#0a7962703a3f334a7f696263696b6d65246f6e7f" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
-        ✉ <span class="__cf_email__" data-cfemail="ef9c8795dfdad6af9a8c87868c8e8880c18a8b9a">[email&#160;protected]</span>
+      <a href="mailto:shz059@uchicago.edu" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
+        ✉ shz059@uchicago.edu
       </a>
       <a href="https://www.zcool.com.cn/work/ZNzMyNzAyMjA=.html" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
         {t[lang].portfolioLink} ↗
@@ -525,7 +525,7 @@
 <footer style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.05);padding:2rem">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
     <p class="mono-sm" style="color:rgba(255,255,255,0.18)">© 2025 Shangyi Zhou · 周尚嶷</p>
-    <p class="mono-sm" style="color:rgba(255,255,255,0.18)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8af9e2f0babfb3caffe9e2e3e9ebede5a4efeeff">[email&#160;protected]</a></p>
+    <p class="mono-sm" style="color:rgba(255,255,255,0.18)">shz059@uchicago.edu</p>
   </div>
 </footer>
 
