@@ -7,6 +7,7 @@
   let menuOpen = $state(false);
   let activeProject = $state(null);
   let hoveredProject = $state(null);
+  let activeAcademic = $state(null);
 
   const t = {
     en: {
@@ -33,6 +34,7 @@
       campusTitle: 'Campus',
       resumeBtnZh: 'Download CV (中文)',
       resumeBtnEn: 'Download Resume (EN)',
+      academicTitle: 'Academic & Course Projects',
     },
     zh: {
       nav: ['关于我', '项目', '经历', '简历', '联系'],
@@ -58,6 +60,7 @@
       campusTitle: '校园经历',
       resumeBtnZh: '下载简历（中文版）',
       resumeBtnEn: 'Download Resume (EN)',
+      academicTitle: '课程与学校项目',
     }
   };
 
@@ -121,6 +124,65 @@
       color: '#8fc44a',
       bg: '#050a02',
       tools: ['Arduino', 'P5.js', 'Interactive Art', 'Cultural Research'],
+    },
+  ];
+
+  const academicProjects = [
+    {
+      id: 'ugarit',
+      titleEn: 'Ugarit Tablet Inventory',
+      titleZh: 'Ugarit 泥板文物数据库',
+      tagEn: 'Svelte · OCHRE SDK · MapLibre · ShadCN',
+      tagZh: 'Svelte · OCHRE SDK · MapLibre · ShadCN',
+      descEn: 'A Svelte app querying the OCHRE archaeological database to display cuneiform tablet inventory from the kingdom of Ugarit — with an interactive MapLibre map, filterable ShadCN table, and dynamic UUID-based routes. Deployed on Vercel.',
+      descZh: '基于 OCHRE 考古数据库开发的 Svelte 应用，展示乌加里特王国楔形文字泥板文物清单，含 MapLibre 交互地图、可筛选数据表格与动态路由，部署于 Vercel。',
+      cover: '/images/Academic/ugarit-1.png',
+      images: ['/images/Academic/ugarit-1.png', '/images/Academic/ugarit-2.png', '/images/Academic/ugarit-3.png'],
+      link: 'https://ugarit-app.vercel.app',
+      tools: ['Svelte', 'OCHRE SDK', 'MapLibre', 'ShadCN', 'Tailwind'],
+      color: '#7ea8c4',
+    },
+    {
+      id: 'met',
+      titleEn: 'Met Museum Explorer',
+      titleZh: '大都会博物馆艺术探索',
+      tagEn: 'Svelte 5 · TypeScript · Met API · Tailwind 4',
+      tagZh: 'Svelte 5 · TypeScript · Met API · Tailwind 4',
+      descEn: 'A Svelte 5 + TypeScript app that calls the Metropolitan Museum of Art API to let users explore fish and bird artworks. Features dynamic routing, random artwork selection, and nested detail pages. Deployed on Vercel.',
+      descZh: '使用 Svelte 5 与 TypeScript 调用大都会博物馆 API，让用户探索馆藏鱼类与鸟类主题艺术品，含动态路由、随机展示与嵌套详情页，部署于 Vercel。',
+      cover: '/images/Academic/met-1.png',
+      images: ['/images/Academic/met-1.png', '/images/Academic/met-2.png', '/images/Academic/met-3.png'],
+      link: 'https://met-museum-app-uiux.vercel.app',
+      tools: ['Svelte 5', 'TypeScript', 'Tailwind 4', 'Met API'],
+      color: '#c4a45a',
+    },
+    {
+      id: 'brave',
+      titleEn: 'Brave Buddies',
+      titleZh: 'Brave Buddies',
+      tagEn: 'Unity · C# · 2D Platformer · Multiplayer',
+      tagZh: 'Unity · C# · 2D横版游戏 · 双人合作',
+      descEn: 'A co-op 2D platformer built in Unity where two players — Wilo and Gabby — fight through forests and caves to rescue enslaved villagers. Features custom sprite animations, enemy AI, tilemap level design, and multiplayer controls.',
+      descZh: '使用 Unity 开发的双人合作 2D 横版闯关游戏，玩家扮演 Wilo 与 Gabby 穿越森林与洞穴，击败恶魔救援村民，含自定义精灵动画、敌人 AI、Tilemap 关卡设计与双人控制系统。',
+      cover: '/images/Academic/brave-1.png',
+      images: ['/images/Academic/brave-1.png', '/images/Academic/brave-2.png', '/images/Academic/brave-3.png', '/images/Academic/brave-4.png'],
+      link: 'https://kikoli0620.itch.io/brave-buddies',
+      tools: ['Unity', 'C#', 'Tilemap', 'Sprite Animation'],
+      color: '#a07ed4',
+    },
+    {
+      id: 'spider',
+      titleEn: 'Arduino Spider Robot',
+      titleZh: 'Arduino 六足蜘蛛机器人',
+      tagEn: 'Arduino · 3D Printing · Fusion 360 · PCB',
+      tagZh: 'Arduino · 3D打印 · Fusion 360 · PCB焊接',
+      descEn: 'A six-legged walking robot built from scratch — designed body parts in Fusion 360, printed with 3D printer, hand-soldered a custom PCB with ESP32, and programmed servo gait sequences in Arduino. A full hardware-to-firmware pipeline.',
+      descZh: '从零构建的六足行走机器人——在 Fusion 360 中建模机身结构，3D 打印各关节部件，手工焊接含 ESP32 的自定义 PCB，并用 Arduino 编程舵机步态序列，完整覆盖硬件到固件的全流程。',
+      cover: '/images/Academic/spider-3.jpg',
+      images: ['/images/Academic/spider-5.jpg', '/images/Academic/spider-1.jpg', '/images/Academic/spider-2.jpg', '/images/Academic/spider-4.jpg', '/images/Academic/spider-3.jpg'],
+      link: null,
+      tools: ['Arduino', 'Fusion 360', '3D Printing', 'ESP32', 'PCB Design'],
+      color: '#6ec49a',
     },
   ];
 
@@ -258,6 +320,16 @@
     document.body.style.overflow = '';
   }
 
+  function openAcademic(p) {
+    activeAcademic = p;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAcademic() {
+    activeAcademic = null;
+    document.body.style.overflow = '';
+  }
+
   function toggleLang() {
     lang = lang === 'en' ? 'zh' : 'en';
   }
@@ -348,7 +420,7 @@
 </section>
 
 <!-- PROJECTS — large hover rows -->
-<section id="projects" style="background:#0a0a0a;padding:8rem 2rem">
+<section id="projects" style="background:#0a0a0a;padding:8rem 2rem 4rem">
   <div class="max-w-7xl mx-auto">
     <p class="fade-up mono-sm mb-4" style="color:rgba(255,255,255,0.28)">02 / {t[lang].projectsTitle}</p>
     <h2 class="fade-up display-font text-5xl md:text-6xl mb-16" style="color:white">{t[lang].projectsTitle}</h2>
@@ -372,7 +444,6 @@
             padding:{hoveredProject===project.id ? '2.5rem 1rem' : '1.8rem 1rem'};
           "
         >
-          <!-- Top row: number + title + tag + arrow -->
           <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
             <span class="mono-sm" style="color:rgba(255,255,255,0.22);min-width:2rem">0{i+1}</span>
             <h3 class="display-font" style="
@@ -392,7 +463,6 @@
             ">↗</span>
           </div>
 
-          <!-- Expanded content on hover -->
           <div style="
             display:grid;
             grid-template-columns:1fr 1fr;
@@ -403,12 +473,10 @@
             overflow:hidden;
             transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, margin-top 0.4s ease;
           ">
-            <!-- Big image -->
             <div style="overflow:hidden;border-radius:2px">
               <img src={project.cover} alt={project.titleEn}
                 style="width:100%;height:100%;object-fit:cover;max-height:32rem;transition:transform 0.6s ease;transform:{hoveredProject===project.id?'scale(1.03)':'scale(1)'}" />
             </div>
-            <!-- Info panel -->
             <div style="display:flex;flex-direction:column;justify-content:center;gap:1.5rem;padding:1rem 0">
               <p style="font-size:0.95rem;line-height:1.75;color:rgba(255,255,255,0.58)">{lang==='en' ? project.descEn : project.descZh}</p>
               <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
@@ -419,6 +487,63 @@
               <p class="mono-sm" style="color:{project.color};letter-spacing:0.15em">
                 {lang==='en' ? '↗ CLICK TO VIEW FULL PROJECT' : '↗ 点击查看完整项目'}
               </p>
+            </div>
+          </div>
+        </div>
+      {/each}
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMIC PROJECTS -->
+<section style="background:#0a0a0a;padding:0 2rem 8rem">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- 次级标题 -->
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-top:1rem">
+      <div style="width:1.5rem;height:1px;background:rgba(255,255,255,0.15)"></div>
+      <p class="mono-sm" style="color:rgba(255,255,255,0.22)">
+        {lang==='en' ? '↳ Academic & Course Projects' : '↳ 课程与学校项目'}
+      </p>
+    </div>
+
+    <!-- 四格卡片 grid -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06)" class="academic-grid">
+      {#each academicProjects as proj}
+        <div
+          class="academic-card"
+          onclick={() => openAcademic(proj)}
+          role="button"
+          tabindex="0"
+          onkeydown={(e) => e.key==='Enter' && openAcademic(proj)}
+        >
+          <!-- Cover -->
+          <div class="academic-cover">
+            <img src={proj.cover} alt={proj.titleEn} class="academic-img" />
+            <!-- Color accent bar -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:{proj.color};opacity:0.6"></div>
+          </div>
+
+          <!-- Info -->
+          <div style="padding:1.25rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:0.6rem;flex:1">
+            <p class="mono-sm" style="color:{proj.color};letter-spacing:0.1em;font-size:0.65rem">
+              {lang==='en' ? proj.tagEn : proj.tagZh}
+            </p>
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:white;line-height:1.1">
+              {lang==='en' ? proj.titleEn : proj.titleZh}
+            </h3>
+            <p style="font-size:0.78rem;line-height:1.65;color:rgba(255,255,255,0.35)">
+              {lang==='en'
+                ? (proj.descEn.length > 110 ? proj.descEn.slice(0,110)+'…' : proj.descEn)
+                : (proj.descZh.length > 55 ? proj.descZh.slice(0,55)+'…' : proj.descZh)}
+            </p>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.05)">
+              <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
+                {#each proj.tools.slice(0,3) as tool, ti}
+                  <span class="mono-sm" style="color:rgba(255,255,255,0.22);font-size:0.62rem">{tool}{ti < Math.min(proj.tools.length,3)-1 ? ' ·' : ''}</span>
+                {/each}
+              </div>
+              <span style="font-size:0.8rem;color:{proj.color};opacity:0.65">↗</span>
             </div>
           </div>
         </div>
@@ -512,8 +637,8 @@
     <h2 class="fade-up display-font text-5xl md:text-6xl mb-8" style="color:white">{t[lang].contactTitle}</h2>
     <p class="fade-up text-lg mb-12 max-w-2xl" style="color:rgba(255,255,255,0.38)">{t[lang].contactDesc}</p>
     <div class="fade-up flex flex-col sm:flex-row gap-6">
-      <a href="mailto:shz059@uchicago.edu" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
-        ✉ shz059@uchicago.edu
+      <a href="/cdn-cgi/l/email-protection#9fecf7e5afaaa6dfeafcf7f6fcfef8f0b1fafbea" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
+        ✉ <span class="__cf_email__" data-cfemail="ccbfa4b6fcf9f58cb9afa4a5afadaba3e2a9a8b9">[email&#160;protected]</span>
       </a>
       <a href="https://www.zcool.com.cn/work/ZNzMyNzAyMjA=.html" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
         {t[lang].portfolioLink} ↗
@@ -525,14 +650,13 @@
 <footer style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.05);padding:2rem">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
     <p class="mono-sm" style="color:rgba(255,255,255,0.18)">© 2025 Shangyi Zhou · 周尚嶷</p>
-    <p class="mono-sm" style="color:rgba(255,255,255,0.18)">shz059@uchicago.edu</p>
+    <p class="mono-sm" style="color:rgba(255,255,255,0.18)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="64170c1e54515d2411070c0d0705030b4a010011">[email&#160;protected]</a></p>
   </div>
 </footer>
 
-<!-- PROJECT MODAL -->
+<!-- PROJECT MODAL (main) -->
 {#if activeProject}
   <div class="modal-overlay" style="background:{activeProject.bg}">
-    <!-- Sticky top bar with title + lang toggle + close -->
     <div class="modal-topbar">
       <div style="display:flex;align-items:center;gap:1.5rem">
         <p class="mono-sm" style="color:{activeProject.color};letter-spacing:0.2em;text-transform:uppercase">
@@ -549,7 +673,6 @@
       </div>
     </div>
 
-    <!-- Modal content -->
     <div style="max-width:72rem;margin:0 auto;padding:2rem 2rem 6rem">
       <h2 class="display-font" style="font-size:clamp(3rem,7vw,5.5rem);color:white;line-height:1;margin-bottom:1.5rem">
         {lang==='en' ? activeProject.titleEn : activeProject.titleZh}
@@ -562,10 +685,86 @@
           <span class="mono-sm px-4 py-1.5" style="border:1px solid {activeProject.color}50;color:{activeProject.color}">{tool}</span>
         {/each}
       </div>
-
-      <!-- Full-width images -->
       <div style="display:flex;flex-direction:column;gap:0.5rem">
         {#each currentImages(activeProject) as img}
+          <img src={img} alt="" style="width:100%;display:block;object-fit:contain" />
+        {/each}
+      </div>
+    </div>
+  </div>
+{/if}
+
+<!-- ACADEMIC MODAL -->
+{#if activeAcademic}
+  <div class="modal-overlay" style="background:#0d0d0d">
+    <div class="modal-topbar">
+      <p class="mono-sm" style="color:{activeAcademic.color};letter-spacing:0.2em;text-transform:uppercase">
+        {lang==='en' ? activeAcademic.tagEn : activeAcademic.tagZh}
+      </p>
+      <div style="display:flex;align-items:center;gap:1rem">
+        <button onclick={toggleLang} class="lang-btn-modal" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.45)">
+          {lang==='en' ? '中文' : 'EN'}
+        </button>
+        <button onclick={closeAcademic} class="lang-btn-modal" style="border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.45)">
+          {t[lang].close}
+        </button>
+      </div>
+    </div>
+
+    <div style="max-width:72rem;margin:0 auto;padding:2rem 2rem 6rem">
+      <!-- Two-column header: info left, button right -->
+      <div style="display:flex;gap:3rem;align-items:flex-start;margin-bottom:3rem;flex-wrap:wrap">
+        <!-- Left: title + desc + tags -->
+        <div style="flex:1;min-width:0">
+          <h2 class="display-font" style="font-size:clamp(2.5rem,6vw,4.5rem);color:white;line-height:1;margin-bottom:1rem">
+            {lang==='en' ? activeAcademic.titleEn : activeAcademic.titleZh}
+          </h2>
+          <p style="color:rgba(255,255,255,0.5);font-size:1rem;line-height:1.8;margin-bottom:1.5rem">
+            {lang==='en' ? activeAcademic.descEn : activeAcademic.descZh}
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+            {#each activeAcademic.tools as tool}
+              <span class="mono-sm px-4 py-1.5" style="border:1px solid {activeAcademic.color}40;color:{activeAcademic.color}">{tool}</span>
+            {/each}
+          </div>
+        </div>
+        <!-- Right: visit button -->
+        {#if activeAcademic.link}
+          <div style="flex-shrink:0;display:flex;align-items:center">
+            <a
+              href={activeAcademic.link}
+              target="_blank"
+              style="
+                display:inline-flex;
+                align-items:center;
+                gap:0.75rem;
+                border:1px solid {activeAcademic.color};
+                color:{activeAcademic.color};
+                padding:1rem 2rem;
+                font-family:'Space Mono',monospace;
+                font-size:0.75rem;
+                letter-spacing:0.18em;
+                text-transform:uppercase;
+                text-decoration:none;
+                transition:background 0.25s, color 0.25s;
+                white-space:nowrap;
+              "
+              onmouseenter={(e) => {
+                e.currentTarget.style.background = activeAcademic.color;
+                e.currentTarget.style.color = '#000';
+              }}
+              onmouseleave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = activeAcademic.color;
+              }}
+            >
+              {lang==='en' ? 'VISIT LIVE SITE' : '访问网站'} ↗
+            </a>
+          </div>
+        {/if}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem">
+        {#each activeAcademic.images as img}
           <img src={img} alt="" style="width:100%;display:block;object-fit:contain" />
         {/each}
       </div>
@@ -616,6 +815,41 @@
   .proj-row:focus { outline:none; }
   .proj-row:focus-visible { outline:2px solid rgba(255,255,255,0.25); }
 
+  /* Academic cards */
+  .academic-grid {
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .academic-card {
+    background: #0a0a0a;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s ease;
+    outline: none;
+  }
+  .academic-card:hover { background: #111; }
+  .academic-card:focus-visible { outline: 1px solid rgba(255,255,255,0.2); }
+
+  .academic-cover {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: #111;
+  }
+  .academic-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: brightness(0.35) saturate(0.4);
+  }
+  .academic-card:hover .academic-img {
+    transform: scale(1.04);
+    filter: brightness(1) saturate(1);
+  }
+
   /* Modal */
   .modal-overlay {
     position:fixed; inset:0; z-index:100; overflow-y:auto;
@@ -652,4 +886,17 @@
   .cursor { position:fixed; width:36px; height:36px; border:1px solid rgba(255,255,255,0.4); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); display:none; transition:width 0.3s,height 0.3s; }
   .cursor-dot { position:fixed; width:4px; height:4px; background:white; border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); display:none; }
   @media (pointer:fine) { .cursor { display:block; } .cursor-dot { display:block; } }
+
+  /* Tablet: academic grid two columns */
+  @media (max-width: 900px) {
+    .academic-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  /* Mobile: academic grid single column */
+  @media (max-width: 640px) {
+    .academic-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
 </style>
