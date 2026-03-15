@@ -337,6 +337,8 @@
   function currentImages(project) {
     return lang === 'zh' ? project.imagesZh : project.imagesEn;
   }
+
+  const email = 'shz059' + '@' + 'uchicago.edu';
 </script>
 
 <div class="cursor"></div>
@@ -637,8 +639,8 @@
     <h2 class="fade-up display-font text-5xl md:text-6xl mb-8" style="color:white">{t[lang].contactTitle}</h2>
     <p class="fade-up text-lg mb-12 max-w-2xl" style="color:rgba(255,255,255,0.38)">{t[lang].contactDesc}</p>
     <div class="fade-up flex flex-col sm:flex-row gap-6">
-      <a href="/cdn-cgi/l/email-protection#9fecf7e5afaaa6dfeafcf7f6fcfef8f0b1fafbea" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
-        ✉ <span class="__cf_email__" data-cfemail="ccbfa4b6fcf9f58cb9afa4a5afadaba3e2a9a8b9">[email&#160;protected]</span>
+      <a href="mailto:{email}" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
+        ✉ {email}
       </a>
       <a href="https://www.zcool.com.cn/work/ZNzMyNzAyMjA=.html" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
         {t[lang].portfolioLink} ↗
@@ -650,7 +652,7 @@
 <footer style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.05);padding:2rem">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
     <p class="mono-sm" style="color:rgba(255,255,255,0.18)">© 2025 Shangyi Zhou · 周尚嶷</p>
-    <p class="mono-sm" style="color:rgba(255,255,255,0.18)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="64170c1e54515d2411070c0d0705030b4a010011">[email&#160;protected]</a></p>
+    <p class="mono-sm" style="color:rgba(255,255,255,0.18)">{email}</p>
   </div>
 </footer>
 
