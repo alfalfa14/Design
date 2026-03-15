@@ -54,7 +54,7 @@
       resumeDesc: '下载我的完整简历，了解更多关于我的经历和技能。',
       resumeBtn: '下载简历',
       contactTitle: '联系我',
-      contactDesc: '我正在寻找 UI/UX、产品设计、视觉创意设计、和项目管理方向的实习机会，欢迎联系！',
+      contactDesc: '我正在寻找 UI/UX、产品设计、视觉创意设计、和项目管理方向的实习，欢迎联系！',
       portfolioLink: '在站酷查看作品集',
       close: '✕ 关闭',
       campusTitle: '校园经历',
