@@ -16,7 +16,7 @@
       heroGreeting: "Hello, I'm",
       heroName: 'Shangyi Zhou',
       heroSub: 'UI/UX Designer · Product Designer · Project Manager',
-      heroDesc: "M.S. Digital Media & XR @ UChicago (Dean's Scholarship) · B.S. ICAM @ UCSD",
+      heroDesc: "M.A. Digital Media & XR @ UChicago (Dean's Scholarship) · B.A. ICAM @ UCSD",
       heroCta: 'View My Work',
       aboutTitle: 'About Me',
       aboutText: "I'm a designer and researcher bridging art, technology, and human experience. With a background spanning interdisciplinary computing, art history, and extended reality, I craft intuitive interfaces and meaningful interactions that put people first.",
