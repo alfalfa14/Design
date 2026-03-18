@@ -157,6 +157,20 @@
       color: '#c4a45a',
     },
     {
+      id: 'cocktaildb',
+      titleEn: 'Cocktail Database',
+      titleZh: '鸡尾酒关系型数据库',
+      tagEn: 'SQL · Relational Database · Data Management',
+      tagZh: 'SQL · 关系型数据库 · 数据管理',
+      descEn: 'A fully normalized relational database for cocktail management, built with SQL. Designed 15+ interconnected tables covering spirits, liqueurs, juices, syrups, glassware, and techniques. Wrote analytical queries including multi-table JOINs, GROUP BY aggregations, price analysis, and alcohol contribution calculations.',
+      descZh: '使用 SQL 构建的鸡尾酒管理关系型数据库，设计 15+ 张相互关联的表，涵盖烈酒、利口酒、果汁、糖浆、玻璃器皿与调酒技法。编写多表 JOIN 查询、聚合分析、价格统计与酒精含量计算等分析性 SQL 语句。',
+      cover: '/images/Academic/cocktail-1.png',
+      images: ['/images/Academic/cocktail-1.png', '/images/Academic/cocktail-2.png', '/images/Academic/cocktail-3.png', '/images/Academic/cocktail-4.png'],
+      link: 'https://github.com/alfalfa14/Data-Management-Cocktails-Project',
+      tools: ['SQL', 'Database Design', 'Data Analysis', 'SQLite'],
+      color: '#d4845a',
+    },
+    {
       id: 'brave',
       titleEn: 'Brave Buddies',
       titleZh: 'Brave Buddies',
@@ -220,7 +234,7 @@
       ],
       bulletsZh: [
         '设计AI交互系统与优化用户体验，围绕情感识别、记忆管理构建人机交互框架，完成原型设计与交互逻辑。',
-        '·基于100+条案例与用户行为分析，提出 10+ 产品优化建议，推动 AI 交互系统体验改进。',
+        '基于100+条案例与用户行为分析，提出 10+ 产品优化建议，推动 AI 交互系统体验改进。',
       ],
     },
     {
@@ -510,8 +524,8 @@
       </p>
     </div>
 
-    <!-- 四格卡片 grid -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06)" class="academic-grid">
+    <!-- 五格卡片 grid -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,0.06)" class="academic-grid">
       {#each academicProjects as proj}
         <div
           class="academic-card"
@@ -715,9 +729,7 @@
     </div>
 
     <div style="max-width:72rem;margin:0 auto;padding:2rem 2rem 6rem">
-      <!-- Two-column header: info left, button right -->
       <div style="display:flex;gap:3rem;align-items:flex-start;margin-bottom:3rem;flex-wrap:wrap">
-        <!-- Left: title + desc + tags -->
         <div style="flex:1;min-width:0">
           <h2 class="display-font" style="font-size:clamp(2.5rem,6vw,4.5rem);color:white;line-height:1;margin-bottom:1rem">
             {lang==='en' ? activeAcademic.titleEn : activeAcademic.titleZh}
@@ -731,7 +743,6 @@
             {/each}
           </div>
         </div>
-        <!-- Right: visit button -->
         {#if activeAcademic.link}
           <div style="flex-shrink:0;display:flex;align-items:center">
             <a
@@ -761,7 +772,7 @@
                 e.currentTarget.style.color = activeAcademic.color;
               }}
             >
-              {lang==='en' ? 'VISIT LIVE SITE' : '访问网站'} ↗
+              {lang==='en' ? (activeAcademic.id === 'cocktaildb' ? 'VIEW ON GITHUB' : 'VISIT LIVE SITE') : (activeAcademic.id === 'cocktaildb' ? '查看 GitHub' : '访问网站')} ↗
             </a>
           </div>
         {/if}
@@ -818,7 +829,6 @@
   .proj-row:focus { outline:none; }
   .proj-row:focus-visible { outline:2px solid rgba(255,255,255,0.25); }
 
-  /* Academic cards */
   .academic-grid {
     border: 1px solid rgba(255,255,255,0.06);
   }
@@ -853,7 +863,6 @@
     filter: brightness(1) saturate(1);
   }
 
-  /* Modal */
   .modal-overlay {
     position:fixed; inset:0; z-index:100; overflow-y:auto;
     animation: modalIn 0.35s cubic-bezier(0.4,0,0.2,1);
@@ -885,19 +894,21 @@
   }
   .lang-btn-modal:hover { opacity:0.6; }
 
-  /* Cursor */
   .cursor { position:fixed; width:36px; height:36px; border:1px solid rgba(255,255,255,0.4); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); display:none; transition:width 0.3s,height 0.3s; }
   .cursor-dot { position:fixed; width:4px; height:4px; background:white; border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); display:none; }
   @media (pointer:fine) { .cursor { display:block; } .cursor-dot { display:block; } }
 
-  /* Tablet: academic grid two columns */
-  @media (max-width: 900px) {
+  @media (max-width: 1100px) {
+    .academic-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+  @media (max-width: 700px) {
     .academic-grid {
       grid-template-columns: repeat(2, 1fr) !important;
     }
   }
-  /* Mobile: academic grid single column */
-  @media (max-width: 640px) {
+  @media (max-width: 480px) {
     .academic-grid {
       grid-template-columns: 1fr !important;
     }
