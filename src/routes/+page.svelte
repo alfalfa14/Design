@@ -8,6 +8,7 @@
   let activeProject = $state(null);
   let hoveredProject = $state(null);
   let activeAcademic = $state(null);
+  let activePoster = $state(null);
 
   const t = {
     en: {
@@ -132,8 +133,8 @@
       id: 'ugarit',
       titleEn: 'Ugarit Tablet Inventory',
       titleZh: 'Ugarit 泥板文物数据库',
-      tagEn: 'Front-End Development · HTML · CSS · Javescript · Web Design · Svelte',
-      tagZh: 'Front-End Development · HTML · CSS · Javescript · Web Design · Svelte',
+      tagEn: 'HTML · CSS · JavaScript · Web Development · Svelte',
+      tagZh: 'HTML · CSS · JavaScript · 网页开发 · Svelte',
       descEn: 'A JavaScript/HTML/CSS web development project built with Svelte, querying the OCHRE archaeological database to display cuneiform tablet inventory from the kingdom of Ugarit — with an interactive MapLibre map, filterable ShadCN table, and dynamic UUID-based routes. Deployed on Vercel.',
       descZh: '使用 JavaScript、HTML、CSS 进行网页开发的 Svelte 应用，基于 OCHRE 考古数据库展示乌加里特王国楔形文字泥板文物清单，含 MapLibre 交互地图、可筛选数据表格与动态路由，部署于 Vercel。',
       cover: '/images/Academic/ugarit-1.png',
@@ -146,8 +147,8 @@
       id: 'met',
       titleEn: 'Met Museum Explorer',
       titleZh: '大都会博物馆艺术探索',
-      tagEn: 'Front-End Development · HTML · CSS · Javescript · Web Design · Svelte',
-      tagZh: 'Front-End Development · HTML · CSS · Javescript · Web Design · Svelte',
+      tagEn: 'HTML · CSS · JavaScript · Web Development · Svelte 5',
+      tagZh: 'HTML · CSS · JavaScript · 网页开发 · Svelte 5',
       descEn: 'A JavaScript/HTML/CSS web development project built with Svelte 5 + TypeScript that calls the Metropolitan Museum of Art API to let users explore fish and bird artworks. Features dynamic routing, random artwork selection, and nested detail pages. Deployed on Vercel.',
       descZh: '使用 JavaScript、HTML、CSS 进行网页开发的 Svelte 5 应用，调用大都会博物馆 API，让用户探索馆藏鱼类与鸟类主题艺术品，含动态路由、随机展示与嵌套详情页，部署于 Vercel。',
       cover: '/images/Academic/met-1.png',
@@ -155,20 +156,6 @@
       link: 'https://met-museum-app-uiux.vercel.app',
       tools: ['Front-End Development', 'Web Design', 'HTML', 'CSS', 'Javescript', 'Svelte', 'TypeScript', 'Tailwind', 'Met API'],
       color: '#c4a45a',
-    },
-    {
-      id: 'cocktaildb',
-      titleEn: 'Cocktail Database',
-      titleZh: '鸡尾酒关系型数据库',
-      tagEn: 'SQL · Relational Database · Data Management',
-      tagZh: 'SQL · 关系型数据库 · 数据管理',
-      descEn: 'A fully normalized relational database for cocktail management, built with SQL. Designed 15+ interconnected tables covering spirits, liqueurs, juices, syrups, glassware, and techniques. Wrote analytical queries including multi-table JOINs, GROUP BY aggregations, price analysis, and alcohol contribution calculations.',
-      descZh: '使用 SQL 构建的鸡尾酒管理关系型数据库，设计 15+ 张相互关联的表，涵盖烈酒、利口酒、果汁、糖浆、玻璃器皿与调酒技法。编写多表 JOIN 查询、聚合分析、价格统计与酒精含量计算等分析性 SQL 语句。',
-      cover: '/images/Academic/cocktail-1.png',
-      images: ['/images/Academic/cocktail-1.png', '/images/Academic/cocktail-2.png', '/images/Academic/cocktail-3.png', '/images/Academic/cocktail-4.png'],
-      link: 'https://github.com/alfalfa14/Data-Management-Cocktails-Project',
-      tools: ['SQL', 'Database Design', 'Data Analysis', 'SQLite'],
-      color: '#d4845a',
     },
     {
       id: 'brave',
@@ -183,6 +170,20 @@
       link: 'https://kikoli0620.itch.io/brave-buddies',
       tools: ['Unity', 'C#', 'Figma', 'Adobe Photoshop', 'Tilemap', 'Sprite Animation'],
       color: '#a07ed4',
+    },
+    {
+      id: 'cocktaildb',
+      titleEn: 'Cocktail Database',
+      titleZh: '鸡尾酒关系型数据库',
+      tagEn: 'SQL · Relational Database · Data Management',
+      tagZh: 'SQL · 关系型数据库 · 数据管理',
+      descEn: 'A fully normalized relational database for cocktail management, built with SQL. Designed 15+ interconnected tables covering spirits, liqueurs, juices, syrups, glassware, and techniques. Wrote analytical queries including multi-table JOINs, GROUP BY aggregations, price analysis, and alcohol contribution calculations.',
+      descZh: '使用 SQL 构建的鸡尾酒管理关系型数据库，设计 15+ 张相互关联的表，涵盖烈酒、利口酒、果汁、糖浆、玻璃器皿与调酒技法。编写多表 JOIN 查询、聚合分析、价格统计与酒精含量计算等分析性 SQL 语句。',
+      cover: '/images/Academic/cocktail-1.png',
+      images: ['/images/Academic/cocktail-1.png', '/images/Academic/cocktail-2.png', '/images/Academic/cocktail-3.png', '/images/Academic/cocktail-4.png'],
+      link: 'https://github.com/alfalfa14/Data-Management-Cocktails-Project',
+      tools: ['SQL', 'Database Design', 'Data Analysis', 'SQLite'],
+      color: '#d4845a',
     },
     {
       id: 'spider',
@@ -512,6 +513,61 @@
   </div>
 </section>
 
+
+<!-- POSTER SECTION -->
+<section style="background:#0a0a0a;padding:0 2rem 4rem">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-top:1rem">
+      <div style="width:1.5rem;height:1px;background:rgba(255,255,255,0.15)"></div>
+      <p class="mono-sm" style="color:rgba(255,255,255,0.22)">
+        {lang==='en' ? '↳ Graphic Design · Visual Communication' : '↳ 平面设计 · 视觉传达'}
+      </p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06)" class="poster-grid">
+      {#each [
+        { src: '/images/posters/Poster1.png', tagsEn: ['Adobe Photoshop', 'Figma', 'AIGC'], tagsZh: ['Adobe Photoshop', 'Figma', 'AIGC'] },
+        { src: '/images/posters/Poster2.png', tagsEn: ['Adobe Photoshop', 'Figma'], tagsZh: ['Adobe Photoshop', 'Figma'] },
+        { src: '/images/posters/Poster3.png', tagsEn: ['Adobe Photoshop', 'Figma'], tagsZh: ['Adobe Photoshop', 'Figma'] },
+        { src: '/images/posters/Poster4.png', tagsEn: ['Adobe Photoshop', 'Figma'], tagsZh: ['Adobe Photoshop', 'Figma'] },
+      ] as poster}
+        <div
+          class="poster-card"
+          onclick={() => { activePoster = poster.src; document.body.style.overflow='hidden'; }}
+          role="button"
+          tabindex="0"
+          onkeydown={(e) => { if(e.key==='Enter') { activePoster = poster.src; document.body.style.overflow='hidden'; } }}
+        >
+          <div class="poster-cover">
+            <img src={poster.src} alt="Poster" class="poster-img" />
+          </div>
+          <div style="padding:0.9rem 1.2rem 1.2rem;display:flex;gap:0.4rem;flex-wrap:wrap">
+            {#each (lang==='en' ? poster.tagsEn : poster.tagsZh) as tag}
+              <span class="mono-sm" style="color:rgba(255,255,255,0.3);font-size:0.62rem">{tag}</span>
+            {/each}
+          </div>
+        </div>
+      {/each}
+    </div>
+  </div>
+</section>
+
+<!-- POSTER LIGHTBOX -->
+{#if activePoster}
+  <div
+    style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;cursor:zoom-out"
+    onclick={() => { activePoster = null; document.body.style.overflow=''; }}
+    role="button"
+    tabindex="0"
+    onkeydown={(e) => { if(e.key==='Escape') { activePoster = null; document.body.style.overflow=''; } }}
+  >
+    <img src={activePoster} alt="Poster" style="max-height:92vh;max-width:92vw;object-fit:contain;box-shadow:0 0 80px rgba(0,0,0,0.8)" />
+    <button
+      onclick={() => { activePoster = null; document.body.style.overflow=''; }}
+      style="position:fixed;top:1.5rem;right:2rem;font-family:'Space Mono',monospace;font-size:0.72rem;color:rgba(255,255,255,0.5);background:transparent;border:none;cursor:pointer;letter-spacing:0.15em"
+    >✕ CLOSE</button>
+  </div>
+{/if}
+
 <!-- ACADEMIC PROJECTS -->
 <section style="background:#0a0a0a;padding:0 2rem 8rem">
   <div class="max-w-7xl mx-auto">
@@ -654,7 +710,7 @@
     <h2 class="fade-up display-font text-5xl md:text-6xl mb-8" style="color:white">{t[lang].contactTitle}</h2>
     <p class="fade-up text-lg mb-12 max-w-2xl" style="color:rgba(255,255,255,0.38)">{t[lang].contactDesc}</p>
     <div class="fade-up flex flex-col sm:flex-row gap-6">
-      <a href="mailto:{email}" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
+      <a href="/cdn-cgi/l/email-protection#dca7b9b1bdb5b0a1" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
         ✉ {email}
       </a>
       <a href="https://www.zcool.com.cn/work/ZNzMyNzAyMjA=.html" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
@@ -831,6 +887,46 @@
 
   .academic-grid {
     border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Poster cards */
+  .poster-grid {
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .poster-card {
+    background: #0a0a0a;
+    cursor: zoom-in;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s ease;
+    outline: none;
+  }
+  .poster-card:hover { background: #111; }
+
+  .poster-cover {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1080 / 1500;
+    background: #111;
+  }
+  .poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: brightness(0.6) saturate(0.6);
+  }
+  .poster-card:hover .poster-img {
+    transform: scale(1.03);
+    filter: brightness(1) saturate(1);
+  }
+
+  @media (max-width: 700px) {
+    .poster-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
 
   .academic-card {
