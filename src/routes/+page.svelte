@@ -10,18 +10,18 @@
   let activeAcademic = $state(null);
   let activePoster = $state(null);
 
-  const t = {
+const t = {
     en: {
       nav: ['About', 'Projects', 'Experience', 'Resume', 'Contact'],
       navIds: ['about','projects','experience','resume','contact'],
       heroGreeting: "Hello, I'm",
       heroName: 'Shangyi Zhou',
-      heroSub: 'UI/UX Designer · Product Designer · Visual Designer · Project Manager',
-      heroDesc: "M.A. Digital Media & XR @ UChicago (Dean's Scholarship) · B.A. ICAM @ UCSD",
+      heroSub: 'UX Designer/Product Manager · Bridging Design, Technology & Cross-Functional Teams',
+      heroDesc: "M.A. Digital Studies specializing in HCI & Product Design @ UChicago (Dean's Scholarship) · B.A. Interdisciplinary Computing and the Arts Major @ UCSD",
       heroCta: 'View My Work',
       aboutTitle: 'About Me',
-      aboutText: "I'm a designer and researcher bridging technology, art, and user experience. With a background spanning interdisciplinary computing, extended reality, and art history, I craft intuitive interfaces and meaningful interactions that put people first.",
-      aboutText2: "Currently pursuing my Master's at the University of Chicago with a 4.0 GPA, I bring hands-on experience in UI/UX design, HCI research, Arduino prototyping, and agile product development.",
+      aboutText: "I'm an interdisciplinary product designer/manager working at the intersection of UX design and product/project management — translating user research and design principles into technical product decisions. Technically fluent across design tools, AI tooling, and front-end development, with strong communication skills across cross-functional teams.",
+      aboutText2: "Currently pursuing my M.A. in Digital Studies at the University of Chicago (Dean's Scholarship), specializing in human-computer interaction and UX/product design & management. My background spans interdisciplinary computing, product design, and art history — grounding a user-centered approach in both technical craft and creative problem-solving.",
       skillsTitle: 'Skills',
       projectsTitle: 'Projects',
       expTitle: 'Experience',
@@ -29,8 +29,9 @@
       resumeDesc: 'Download my full resume to learn more about my experience and skills.',
       resumeBtn: 'Download Resume',
       contactTitle: 'Get In Touch',
-      contactDesc: "I'm currently looking for UI/UX, Product Design, Creative Visual Design, and Project Management internships. Let's connect!",
-      portfolioLink: 'View Portfolio on ZCOOL',
+      contactDesc: "I'm currently looking for UI/UX, Product Design, Creative Visual Design, and Project Management opportunities. Let's connect!",
+      linkedinLink: 'Connect on LinkedIn',
+      instagramLink: 'Follow on Instagram',
       close: '✕ CLOSE',
       campusTitle: 'Campus',
       resumeBtnZh: 'Download CV (中文)',
@@ -42,12 +43,12 @@
       navIds: ['about','projects','experience','resume','contact'],
       heroGreeting: '你好，我是',
       heroName: '周尚嶷',
-      heroSub: '交互设计师 · 产品设计师 · 视觉创意设计师 · 项目经理',
-      heroDesc: '芝加哥大学数字媒体与扩展现实硕士 · 院长奖学金',
+      heroSub: '从UX设计走向产品管理 · 连接设计、技术与跨职能团队',
+      heroDesc: '芝加哥大学人机交互/产品设计方向数字研究硕士 · 院长奖学金',
       heroCta: '查看作品',
       aboutTitle: '关于我',
-      aboutText: '我是一名设计师与研究者，在科技、艺术与用户体验之间架桥铺路。我的背景横跨跨学科计算机、扩展现实与艺术史，致力于打造以人为本的直觉界面与有意义的交互体验。',
-      aboutText2: '目前就读于芝加哥大学，GPA 4.0，拥有 UI/UX 设计、HCI 研究、Arduino 原型开发及敏捷产品开发的实战经验，正在寻找产品/交互/UIUX 设计及项目管理方向的实习机会。',
+      aboutText: '我是一名跨学科产品设计师/经理，工作重心在于用户体验设计与产品/项目管理的交叉地带——将用户研究与设计原则转化为具体的技术产品决策。我在设计工具、AI工具与前端开发方面技术娴熟，并具备跨职能团队间的高效沟通能力。',
+      aboutText2: '目前就读于芝加哥大学数字研究（Digital Studies）硕士项目（院长奖学金获得者），专注于人机交互与用户体验/产品设计管理方向。我的背景横跨跨学科计算机、产品设计与艺术史，将以人为本的设计理念建立在扎实的技术功底与创造性问题解决能力之上。',
       skillsTitle: '技能',
       projectsTitle: '项目展示',
       expTitle: '实习经历',
@@ -55,8 +56,9 @@
       resumeDesc: '下载我的完整简历，了解更多关于我的经历和技能。',
       resumeBtn: '下载简历',
       contactTitle: '联系我',
-      contactDesc: '我正在寻找 UI/UX、产品设计、视觉创意设计、和项目管理方向的实习，欢迎联系！',
-      portfolioLink: '在站酷查看作品集',
+      contactDesc: '我正在寻找 UI/UX、产品设计、视觉创意设计、和项目管理方向的工作机会，欢迎联系！',
+      linkedinLink: '领英主页',
+      instagramLink: 'Instagram',
       close: '✕ 关闭',
       campusTitle: '校园经历',
       resumeBtnZh: '下载简历（中文版）',
@@ -80,6 +82,38 @@
       color: '#c8a45a',
       bg: '#0e0b04',
       tools: ['Figma', 'Adobe Photoshop', 'UX Research', 'Prototyping', 'Product Design'],
+    },
+    {
+      id: 'codraft',
+      titleEn: 'CoDraft:\nAI Writing Decomposer',
+      titleZh: 'CoDraft · AI写作分解器',
+      tagEn: 'AI Product Design · Full-Stack Development · UX',
+      tagZh: 'AI产品设计 · 全栈开发 · 用户体验',
+      descEn: 'An AI-powered writing companion that decomposes the drafting process into guided stages — outlining, structuring, and refining — powered by the Claude API. Independently taken from concept to production: product framing, UX flow, and full-stack build, with custom interaction details like magnetic cursor repulsion and 3D card tilt.',
+      descZh: '一款基于 Claude API 的 AI 写作辅助工具，将写作过程拆解为大纲构建、结构梳理、语言润色等引导式阶段。独立完成从产品构思、交互设计到全栈开发的完整流程，并加入磁性光标排斥、卡片3D倾斜等自定义交互细节，提升写作过程中的沉浸感与掌控感。',
+      cover: '/images/Decomposer/CoDraft 3.jpg',
+      imagesEn: ['/images/Decomposer/CoDraft 1.jpg','/images/Decomposer/CoDraft 2.jpg','/images/Decomposer/CoDraft 3.jpg','/images/Decomposer/CoDraft 4.jpg'],
+      imagesZh: ['/images/Decomposer/CoDraft 1 CH.jpg','/images/Decomposer/CoDraft 2 CH.jpg','/images/Decomposer/CoDraft 3 CH.jpg','/images/Decomposer/CoDraft 4 CH.jpg'],
+      color: '#C40A12',
+      bg: '#0e0403',
+      link: 'https://writing-decomposer.vercel.app',
+      tools: ['SvelteKit', 'Tailwind CSS', 'GSAP', 'Claude API', 'Product Design', 'Full-Stack Development'],
+    },
+    {
+      id: 'aigcatlas',
+      titleEn: 'AIGC Atlas DashBoard',
+      titleZh: 'AIGC艺术趋势Dashboard',
+      tagEn: 'Data Visualization · Dashboard Design · Product Design',
+      tagZh: '数据可视化 · 仪表盘设计 · 产品设计',
+      descEn: 'An interactive dashboard visualizing AI-generated art style trends from 2022–2024, built on a curated dataset of AI artwork. Designed a full-screen, immersive interface housing seven distinct chart types — from trend lines to an interactive bubble world map — turning raw dataset into a legible visual narrative for researchers and enthusiasts.',
+      descZh: '基于2022–2024年AI生成艺术数据集打造的交互式可视化看板。设计沉浸式全屏界面，整合趋势折线图、热力图、气泡世界地图等七种图表类型，将原始数据转化为易于理解的视觉叙事，服务于研究者与爱好者的探索需求。',
+      cover: '/images/AIGC Atlas/AIGC Atlas 3.jpg',
+      imagesEn: ['/images/AIGC Atlas/AIGC Atlas 1.jpg','/images/AIGC Atlas/AIGC Atlas 2.jpg','/images/AIGC Atlas/AIGC Atlas 3.jpg','/images/AIGC Atlas/AIGC Atlas 4.jpg'],
+      imagesZh: ['/images/AIGC Atlas/AIGC Atlas 1 CH.jpg','/images/AIGC Atlas/AIGC Atlas 2 CH.jpg','/images/AIGC Atlas/AIGC Atlas 3 CH.jpg','/images/AIGC Atlas/AIGC Atlas 4 CH.jpg'],
+      color: '#f0c94a',
+      bg: '#0a0904',
+      link: 'https://aigc-art-trends-dashboard.onrender.com/',
+      tools: ['Python', 'Dash', 'Plotly', 'Data Visualization', 'Dashboard Design'],
     },
     {
       id: 'trackpack',
@@ -203,39 +237,56 @@
 
   const experiences = [
     {
-      companyEn: 'Lifang International Digital Technology Co., Ltd.',
-      companyZh: '力方国际数字科技有限公司',
-      roleEn: 'UI Design Intern',
+      companyEn: "L'Oréal",
+      companyZh: '欧莱雅',
+      roleEn: 'Digital Project Designer/Manager Intern',
+      roleZh: '数字项目设计与管理实习生',
+      period: '2026.05 – Present',
+      locationEn: 'Shanghai',
+      locationZh: '上海',
+      bulletsEn: [
+        'Pioneered the L\'Oréal Digital Methodology Encyclopedia from 0 to 1, managing the full product lifecycle from information architecture to UI design and front-end delivery, built with React and Figma with AI tooling, housing 200+ product claims and methodologies across a unified navigation system and reusable component library.',
+        'Independently managed cross-functional coordination across stakeholders to define UX requirements and resolve design-technical tradeoffs, driving 3 prototype iterations to a unified direction through critiques and user research & analysis.',
+      ],
+      bulletsZh: [
+        '从0到1主导欧莱雅数字方法论百科全书项目，独立负责信息架构、UI设计到前端交付的全产品生命周期，基于React与Figma结合AI工具搭建，收录200+项产品声明与方法论，统一导航系统与可复用组件库。',
+        '独立统筹跨部门协作，明确UX需求并解决设计与技术间的权衡取舍，通过多轮评审与用户分析推动3轮原型迭代，最终统一设计方向。',
+      ],
+    },
+    {
+      companyEn: 'Guangzhou Lifang International Digital Technologies Co., Ltd.',
+      companyZh: '广州力方国际数字科技有限公司',
+      roleEn: 'UI Designer Intern',
       roleZh: 'UI 设计实习生',
       period: '2025.07 – 2025.09',
       locationEn: 'Chengdu',
       locationZh: '成都',
       bulletsEn: [
-        'Led UI/UX design for digital cultural interactive products; delivered 30+ lo-fi and hi-fi prototypes and component designs, driving core feature pages from concept to implementation.',
-        'Built 20+ components and information architectures in Figma to enhance interface consistency and support efficient front-end development, improving design-development collaboration efficiency by 30%',
-        'Participated in requirements reviews and version iterations under agile development; collaborated with PM and 20+ developers to optimize user experience and usability.',
+        'Delivered 30+ low/high-fidelity prototypes for culturally-focused interactive products, owning end-to-end UX/UI design from user research and wireframing to usability testing and production handoff.',
+        'Built a Figma design system (20+ components) with unified IA, boosting collaboration efficiency by 30%.',
+        'Ran agile sprint cycles with 20+ cross-functional stakeholders, aligning design with product requirements.',
       ],
       bulletsZh: [
-        '负责数字文化互动产品 UI/UX 设计，完成 30+ 低保真/高保真原型及组件设计，推动核心功能页面设计落地。',
-        '使用 Figma 构建 20+组件与信息架构，增强界面一致性并支持前端开发高效实现，提升设计开发协作效率 30%。',
-        '在高审美和信息结构标准下参与需求评审与版本迭代，协同 PM 及 20+开发成员优化用户体验与产品可用性。',
+        '交付30+文化主题互动产品的低/高保真原型，独立负责从用户研究、线框图到可用性测试与生产交接的端到端UX/UI设计。',
+        '搭建含20+组件的Figma设计系统，统一信息架构，提升协作效率30%。',
+        '在敏捷冲刺周期中与20+跨职能相关方协作，确保设计与产品需求保持一致。',
       ],
     },
     {
-      companyEn: 'USC – Prof. Aisling Kelliher "Memory Research"',
-      companyZh: '南加州大学 Aisling Kelliher 教授 Memory Research 项目',
+      companyEn: 'USC – Prof. Aisling Kelliher, School of Cinematic Arts',
+      companyZh: '南加州大学 Aisling Kelliher 教授 电影艺术学院',
       roleEn: 'Research Assistant',
       roleZh: '项目研究员',
       period: '2024.06 – 2024.07',
       locationEn: 'Los Angeles',
       locationZh: '洛杉矶',
       bulletsEn: [
-        'Designed AI interaction systems and optimized user experience; built human-computer interaction frameworks centered on emotion recognition and memory management, completing prototype design and interaction logic.',
-        'Analyzed 100+ cases and user behaviors; proposed 10+ product optimization recommendations to drive experience improvements for the AI interaction system.',
+        'Designed an AI-driven HCI framework around emotional recognition and memory management, building human-centered interaction architecture through user research, prototype iteration, and usability analysis.',
+        'Synthesized 100+ behavioral data points into 10+ actionable UX recommendations, applying data-driven design thinking to enhance system responsiveness, emotional resonance, and interaction clarity.',
       ],
       bulletsZh: [
-        '设计 AI 交互系统与优化用户体验，围绕情感识别、记忆管理构建人机交互框架，完成原型设计与交互逻辑。',
-        '基于 100+条案例与用户行为调研分析，提出 10+ 产品方案和优化建议，推动 AI 交互系统体验改进。',
+        '设计以情感识别与记忆管理为核心的AI驱动人机交互框架，通过用户研究、原型迭代与可用性分析构建以人为本的交互架构。',
+        '综合分析100+条行为数据，提炼10+条可执行的UX优化建议，运用数据驱动的设计思维提升系统响应性、情感共鸣与交互清晰度。',
       ],
     },
     {
@@ -252,34 +303,38 @@
         'Hosted 10+ industry expert judges, arranged review venues, and participated in guided presentations; strengthened project execution and collaborative communication skills within a high-standard team environment.',
       ],
       bulletsZh: [
-        '负责 3 场大型展览项目的前期筹备与落地执行，支持展览内容与空间呈现的整体规划，接待业内专家评委 10+。',
-        '协同策展人、设计师及多方团队驱动展览执行流程，跨部门沟通并协调资源，保障文物的包装、运输、和展出。',
-        '整理展览资料体系并处理中英文内容（1000+资料、 20+文稿），提升展览信息传达效率， 优化信息层级与表达逻辑。',
+        '参与3 场大型展览项目：九十周年院展、威廉·莫里斯特展及江苏省十大精品展评审。',
+        '整理资料1000+、人工翻译中英文文稿20+、协助设计与排版、包装运输文物、配合设计师与多方机构推进工作。',
+        '接待业内专家评委10+，布置评审会场并参与学习讲解，在高标准团队氛围中提升项目执行力与协作沟通能力。',
       ],
     },
   ];
 
   const campus = [
     {
-      companyEn: 'UCSD Envision Lab',
-      companyZh: '加州大学圣地亚哥分校 Envision Lab',
-      roleEn: 'Lab Assistant',
+      companyEn: 'UCSD Envision Arts & Engineering Maker Studio',
+      companyZh: '加州大学圣地亚哥分校 Envision Arts & Engineering Maker Studio',
+      roleEn: 'Lab/Studio Assistant',
       roleZh: '实验室助理',
       period: '2024.01 – 2025.06',
       locationEn: 'San Diego',
       locationZh: '圣地亚哥',
       bulletsEn: [
-        'Supported 300+ students in design and prototyping practice; guided problem decomposition and solution building around user needs, facilitating cross-disciplinary collaboration between engineering and visual design.',
-        'Provided hands-on guidance for 3D printing, laser cutting, soldering, and weaving equipment to support prototype iteration and interaction implementation, strengthening design expression and execution capabilities.',
+        'Managed and supported 300+ students in projects, teaching design skills and problem-solving grounded in user needs, resulting in 30+ completed projects through cross-disciplinary collaboration between engineering & design.',
       ],
       bulletsZh: [
-        '支持 300+ 学生开展设计与原型实践，围绕用户需求引导问题拆解与方案构建，促进工程与视觉设计跨学科协作。',
-        '提供 3D 打印、激光切割、焊接与编织等设备指导，支持原型迭代与交互实现，强化设计表达与落地能力。',
+        '管理并支持300+名学生的项目实践，教授以用户需求为核心的设计技能与问题解决方法，通过工程与设计的跨学科协作促成30+个项目落地完成。',
       ],
     },
   ];
 
-  const skills = ['Figma', 'UI/UX Design', 'Interaction Design', 'Prototyping', 'Design Systems', 'User Research', 'HCI', 'XR/VR', 'HTML/CSS', 'JavaScript', 'Svelte', 'Python', 'Arduino', 'P5.js', 'Blender', 'Adobe PS', 'Illustrator', 'InDesign', 'Unreal Engine', 'Unity'];
+  const skills = ['UX/UI Design', 'Interaction Design', 'HCI', 'Front-End Development', 'AI-assisted Development', 'Data Management/Visualization', 'User Research', 'Usability Testing', 'Product & Project Management', 'Game Design', 'Python', 'SQL', 'C++', 'C#', 'Java', 'JavaScript', 'HTML', 'CSS', 'React', 'Svelte', 'Figma', 'Photoshop', 'Illustrator', 'InDesign', 'Blender', 'Rhino', 'Sketch', 'Unreal Engine', 'Unity', 'MS Office'];
+
+  const skillColors = ['#c8a45a', '#e87d9b', '#e26f50', '#8fc44a', '#7ea8c4', '#a07ed4', '#d4845a', '#6ec49a', '#C40A12', '#f0c94a'];
+
+  function randomSkillColor() {
+    return skillColors[Math.floor(Math.random() * skillColors.length)];
+  }
 
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -430,7 +485,19 @@
       <p class="fade-up mono-sm mb-6" style="color:rgba(255,255,255,0.28)">{t[lang].skillsTitle}</p>
       <div class="flex flex-wrap gap-2">
         {#each skills as skill}
-          <span class="skill-tag mono-sm px-3 py-1.5 border transition-all cursor-default" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.1)">{skill}</span>
+          <span
+            class="skill-tag mono-sm px-3 py-1.5 border cursor-default"
+            style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.1);transition:color 0.5s ease, border-color 0.5s ease"
+            onmouseenter={(e) => {
+              const c = randomSkillColor();
+              e.currentTarget.style.color = c;
+              e.currentTarget.style.borderColor = c;
+            }}
+            onmouseleave={(e) => {
+              e.currentTarget.style.color = 'rgba(255,255,255,0.5)';
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+            }}
+          >{skill}</span>
         {/each}
       </div>
     </div>
@@ -713,8 +780,11 @@
       <a href="/cdn-cgi/l/email-protection#dca7b9b1bdb5b0a1" class="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 mono-sm tracking-widest hover:bg-white hover:text-black transition-all">
         ✉ {email}
       </a>
-      <a href="https://www.zcool.com.cn/work/ZNzMyNzAyMjA=.html" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
-        {t[lang].portfolioLink} ↗
+      <a href="https://www.linkedin.com/in/shangyi-zhou-2a02a4263/" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
+        {t[lang].linkedinLink} ↗
+      </a>
+      <a href="https://www.instagram.com/alfalfa.z/" target="_blank" class="inline-flex items-center gap-3 border border-white/20 px-8 py-4 mono-sm tracking-widest hover:border-white hover:text-white transition-all" style="color:rgba(255,255,255,0.45)">
+        {t[lang].instagramLink} ↗
       </a>
     </div>
   </div>
@@ -747,16 +817,39 @@
     </div>
 
     <div style="max-width:72rem;margin:0 auto;padding:2rem 2rem 6rem">
-      <h2 class="display-font" style="font-size:clamp(3rem,7vw,5.5rem);color:white;line-height:1;margin-bottom:1.5rem">
-        {lang==='en' ? activeProject.titleEn : activeProject.titleZh}
-      </h2>
-      <p style="color:rgba(255,255,255,0.55);font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:42rem">
-        {lang==='en' ? activeProject.descEn : activeProject.descZh}
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:3rem">
-        {#each activeProject.tools as tool}
-          <span class="mono-sm px-4 py-1.5" style="border:1px solid {activeProject.color}50;color:{activeProject.color}">{tool}</span>
-        {/each}
+      <div style="display:flex;gap:3rem;align-items:flex-start;margin-bottom:3rem;flex-wrap:wrap">
+        <div style="flex:1;min-width:0">
+          <h2 class="display-font" style="font-size:clamp(3rem,7vw,5.5rem);color:white;line-height:1;margin-bottom:1.5rem;white-space:pre-line">
+            {lang==='en' ? activeProject.titleEn : activeProject.titleZh}
+          </h2>
+          <p style="color:rgba(255,255,255,0.55);font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:42rem">
+            {lang==='en' ? activeProject.descEn : activeProject.descZh}
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+            {#each activeProject.tools as tool}
+              <span class="mono-sm px-4 py-1.5" style="border:1px solid {activeProject.color}50;color:{activeProject.color}">{tool}</span>
+            {/each}
+          </div>
+        </div>
+        {#if activeProject.link}
+          <div style="flex-shrink:0;display:flex;align-items:center">
+            <a
+              href={activeProject.link}
+              target="_blank"
+              style="display:inline-flex;align-items:center;gap:0.75rem;border:1px solid {activeProject.color};color:{activeProject.color};padding:1rem 2rem;font-family:'Space Mono',monospace;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:background 0.25s, color 0.25s;white-space:nowrap"
+              onmouseenter={(e) => {
+                e.currentTarget.style.background = activeProject.color;
+                e.currentTarget.style.color = '#000';
+              }}
+              onmouseleave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = activeProject.color;
+              }}
+            >
+              {lang==='en' ? 'VISIT LIVE SITE' : '访问网站'} ↗
+            </a>
+          </div>
+        {/if}
       </div>
       <div style="display:flex;flex-direction:column;gap:0.5rem">
         {#each currentImages(activeProject) as img}
