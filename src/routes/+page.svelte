@@ -92,6 +92,7 @@ const t = {
       descEn: 'An AI-powered writing companion that decomposes the drafting process into guided stages — outlining, structuring, and refining — powered by the Claude API. Independently taken from concept to production: product framing, UX flow, and full-stack build, with custom interaction details like magnetic cursor repulsion and 3D card tilt.',
       descZh: '一款基于 Claude API 的 AI 写作辅助工具，将写作过程拆解为大纲构建、结构梳理、语言润色等引导式阶段。独立完成从产品构思、交互设计到全栈开发的完整流程，并加入磁性光标排斥、卡片3D倾斜等自定义交互细节，提升写作过程中的沉浸感与掌控感。',
       cover: '/images/Decomposer/CoDraft 3.jpg',
+      video: '/images/Decomposer/CoDraft Video.mp4',
       imagesEn: ['/images/Decomposer/CoDraft 1.jpg','/images/Decomposer/CoDraft 2.jpg','/images/Decomposer/CoDraft 3.jpg','/images/Decomposer/CoDraft 4.jpg'],
       imagesZh: ['/images/Decomposer/CoDraft 1 CH.jpg','/images/Decomposer/CoDraft 2 CH.jpg','/images/Decomposer/CoDraft 3 CH.jpg','/images/Decomposer/CoDraft 4 CH.jpg'],
       color: '#C40A12',
@@ -99,7 +100,7 @@ const t = {
       link: 'https://writing-decomposer.vercel.app',
       tools: ['SvelteKit', 'Tailwind CSS', 'GSAP', 'Claude API', 'Product Design', 'Full-Stack Development'],
     },
-    {
+{
       id: 'aigcatlas',
       titleEn: 'AIGC Atlas DashBoard',
       titleZh: 'AIGC艺术趋势Dashboard',
@@ -108,6 +109,7 @@ const t = {
       descEn: 'An interactive dashboard visualizing AI-generated art style trends from 2022–2024, built on a curated dataset of AI artwork. Designed a full-screen, immersive interface housing seven distinct chart types — from trend lines to an interactive bubble world map — turning raw dataset into a legible visual narrative for researchers and enthusiasts.',
       descZh: '基于2022–2024年AI生成艺术数据集打造的交互式可视化看板。设计沉浸式全屏界面，整合趋势折线图、热力图、气泡世界地图等七种图表类型，将原始数据转化为易于理解的视觉叙事，服务于研究者与爱好者的探索需求。',
       cover: '/images/AIGC Atlas/AIGC Atlas 3.jpg',
+      video: '/images/AIGC Atlas/AIGCAtlasVideo.mp4',
       imagesEn: ['/images/AIGC Atlas/AIGC Atlas 1.jpg','/images/AIGC Atlas/AIGC Atlas 2.jpg','/images/AIGC Atlas/AIGC Atlas 3.jpg','/images/AIGC Atlas/AIGC Atlas 4.jpg'],
       imagesZh: ['/images/AIGC Atlas/AIGC Atlas 1 CH.jpg','/images/AIGC Atlas/AIGC Atlas 2 CH.jpg','/images/AIGC Atlas/AIGC Atlas 3 CH.jpg','/images/AIGC Atlas/AIGC Atlas 4 CH.jpg'],
       color: '#f0c94a',
@@ -852,6 +854,9 @@ const t = {
         {/if}
       </div>
       <div style="display:flex;flex-direction:column;gap:0.5rem">
+        {#if activeProject.video}
+          <video src={activeProject.video} controls playsinline style="width:100%;display:block"></video>
+        {/if}
         {#each currentImages(activeProject) as img}
           <img src={img} alt="" style="width:100%;display:block;object-fit:contain" />
         {/each}
