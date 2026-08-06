@@ -86,7 +86,7 @@ const t = {
     {
       id: 'loreal',
       titleEn: "L'Oréal Digital Methodology Encyclopedia",
-      titleZh: '欧莱雅数字方法论百科全书',
+      titleZh: '欧莱雅产品试验方法百科全书',
       tagEn: 'Product Design · Front-End Development · Project Management',
       tagZh: '产品设计 · 前端开发 · 项目管理',
       descEn: "A 0-to-1 internal platform housing 200+ product claims and testing methodologies for L'Oréal's R&I team, unifying information architecture, UI design, and front-end delivery into a single navigation system with a reusable component library. Independently led the full product lifecycle — from stakeholder alignment and UX requirements to prototype iteration and technical implementation with React and Figma, augmented by AI tooling.",
