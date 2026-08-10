@@ -92,8 +92,9 @@ const t = {
       descEn: "A 0-to-1 internal platform housing 200+ product claims and testing methodologies for L'Oréal's R&I team, unifying information architecture, UI design, and front-end delivery into a single navigation system with a reusable component library. Independently led the full product lifecycle — from stakeholder alignment and UX requirements to prototype iteration and technical implementation with React and Figma, augmented by AI tooling.",
       descZh: '为欧莱雅研发创新部门从0到1搭建的内部平台，收录200+项产品声明与测试方法论，将信息架构、UI设计与前端交付整合进统一的导航系统与可复用组件库。独立主导产品全生命周期——从跨部门需求对齐、UX需求梳理，到原型迭代与基于React、Figma及AI工具的技术落地实现。',
       cover: '/images/Loreal/Loreal 5.jpg',
+      videos: ['/images/Loreal/video1.mp4', '/images/Loreal/video2.mp4', '/images/Loreal/video3.mp4', '/images/Loreal/video4.mp4'],
       imagesEn: ['/images/Loreal/Loreal 1.jpg','/images/Loreal/Loreal 2.jpg','/images/Loreal/Loreal 3.jpg','/images/Loreal/Loreal 4.jpg','/images/Loreal/Loreal 5.jpg','/images/Loreal/Loreal 6.jpg'],
-      imagesZh: ['/images/Loreal/Loreal 1.jpg','/images/Loreal/Loreal 2.jpg','/images/Loreal/Loreal 3.jpg','/images/Loreal/Loreal 4.jpg','/images/Loreal/Loreal 5.jpg','/images/Loreal/Loreal 6.jpg'],
+      imagesZh: ['/images/Loreal/Loreal1CH.jpg','/images/Loreal/Loreal2CH.jpg','/images/Loreal/Loreal3CH.jpg','/images/Loreal/Loreal4CH.jpg','/images/Loreal/Loreal5CH.jpg','/images/Loreal/Loreal6CH.jpg'],
       color: '#9b7ed4',
       bg: '#0b0810',
       tools: ['React', 'Figma', 'AI Tooling', 'Information Architecture', 'Product Design', 'Project Management'],
@@ -871,6 +872,11 @@ const t = {
       <div style="display:flex;flex-direction:column;gap:0.5rem">
         {#if activeProject.video}
           <video src={activeProject.video} controls playsinline style="width:100%;display:block"></video>
+        {/if}
+        {#if activeProject.videos}
+          {#each activeProject.videos as vid}
+            <video src={vid} controls playsinline style="width:100%;display:block"></video>
+          {/each}
         {/if}
         {#each currentImages(activeProject) as img}
           <img src={img} alt="" style="width:100%;display:block;object-fit:contain" />
